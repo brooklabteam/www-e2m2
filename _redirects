@@ -8,7 +8,9 @@
 /2022				/archives/2022
 
 # 404 errors
+/index.html																		/	301!
 /about.html                                                                     /about	301!
+/acknowledgements.html															/acknowledgements	301!
 /archives/assets/2022/Activities/Dynamical_Fever/Dynamical_Fever_Download.zip   /assets/2022/Activities/Dynamical_Fever/Dynamical_Fever_Download.zip
 /archives/assets/2022/Activities/E2M2-Final-Research-Plan.pdf                   /assets/2022/Activities/E2M2-Final-Research-Plan.pdf
 /archives/assets/2022/Activities/Epidemic_Cards_Activity.zip					/assets/2022/Activities/Epidemic_Cards_Activity.zip
@@ -21,5 +23,6 @@
 /assets/2019/4_Occupancy.zip                                                    /assets/2019/4_Occupancy_2019.zip
 /assets/img/IMG_1317.JPG                                                        /assets/img/E2M2-2022.jpg
 /assets/E2M2-2022.jpg                                                           /assets/img/E2M2-2022.jpg
+/E2M2_2018																		/archives/2018
 /E2M2-2019/4_FanazavaniWomensMarch.pdf                                          /assets/2019/4_FanazavaniWomensMarch.pdf
-/e2m2_2020                                                                      /archives/2020
+/e2m2_2020                                                                      /archives/2020	301!
