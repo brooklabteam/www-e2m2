@@ -1,0 +1,206 @@
+Physical cores: 8
+Logical cores:  8
+Memory:         8GB
+Extensions:     none [WARNING!]
+
+WARNING: MSA has not enough sites to infer reliable results
+Creating new checkpoint file: /Users/gwenddolenkettenburg/Desktop/RAxML/RAxML_GUI_ModelTest_ranomafana_lemurs_cytochromeB_align.ckp
+--------------------------------------------------------------------------------
+ModelTest-NG v0.1.7
+
+Input data:
+  MSA:        /Users/gwenddolenkettenburg/Desktop/RAxML/ranomafana_lemurs_cytochromeB_align.fas
+  Tree:       Maximum parsimony
+    file:           -
+  #taxa:            12
+  #sites:           1141
+  #patterns:        439
+  Max. thread mem:  2 MB
+
+Output:
+  Log:           /Users/gwenddolenkettenburg/Desktop/RAxML/RAxML_GUI_ModelTest_ranomafana_lemurs_cytochromeB_align.log
+  Starting tree: /Users/gwenddolenkettenburg/Desktop/RAxML/RAxML_GUI_ModelTest_ranomafana_lemurs_cytochromeB_align.tree
+  Results:       /Users/gwenddolenkettenburg/Desktop/RAxML/RAxML_GUI_ModelTest_ranomafana_lemurs_cytochromeB_align.out
+
+Selection options:
+  # dna schemes:      11
+  # dna models:       88
+  include model parameters:
+    Uniform:         true
+    p-inv (+I):      true
+    gamma (+G):      true
+    both (+I+G):     true
+    free rates (+R): false
+    fixed freqs:     true
+    estimated freqs: true
+    #categories:     4
+  gamma rates mode:   mean
+  asc bias:           none
+  epsilon (opt):      0.01
+  epsilon (par):      0.05
+  keep branches:      false
+
+Additional options:
+  verbosity:        very low
+  threads:          2/8
+  RNG seed:         12345
+  subtree repeats:  disabled
+--------------------------------------------------------------------------------
+modeltest-ng was called as follows: 
+>> /Applications/raxmlGUI.app/Contents/Resources/static/bin/modeltest-ng-ARM64 -d nt -i /Users/gwenddolenkettenburg/Desktop/RAxML/ranomafana_lemurs_cytochromeB_align.fas -o /Users/gwenddolenkettenburg/Desktop/RAxML/RAxML_GUI_ModelTest_ranomafana_lemurs_cytochromeB_align --force -p 2 
+
+
+Partition 1/1
+
+ ----ID---  ----MODEL---- ---Time--- -Elapsed--- -------LnL------- -Alpha- -P-inv-
+
+Computation of likelihood scores completed. It took 0h:00:10
+
+BIC       model              K            lnL          score          delta    weight
+--------------------------------------------------------------------------------
+       1  TIM2+I+G4          8     -6852.3115     13908.7732         0.0000    0.9990
+       2  GTR+I+G4          10     -6852.2493     13922.7281        13.9550    0.0009
+       3  TIM2+G4            7     -6867.0501     13931.2108        22.4376    0.0000
+       4  TrN+I+G4           7     -6867.9037     13932.9178        24.1446    0.0000
+       5  TIM3+I+G4          8     -6867.2935     13938.7372        29.9641    0.0000
+       6  TIM1+I+G4          8     -6867.6480     13939.4461        30.6729    0.0000
+       7  GTR+G4             9     -6867.1102     13945.4103        36.6371    0.0000
+       8  TPM2uf+I+G4        7     -6874.8729     13946.8562        38.0831    0.0000
+       9  HKY+I+G4           6     -6879.6620     13949.3949        40.6217    0.0000
+      10  TrN+G4             6     -6881.0636     13952.1981        43.4249    0.0000
+--------------------------------------------------------------------------------
+Best model according to BIC
+---------------------------
+Model:              TIM2+I+G4
+lnL:                -6852.3115
+Frequencies:        0.3074 0.3417 0.1143 0.2367
+Subst. Rates:       6.1251 23.7840 6.1251 1.0000 92.2337 1.0000 
+Inv. sites prop:    0.3880
+Gamma shape:        0.7373
+Score:              13908.7732
+Weight:             0.9990
+---------------------------
+Parameter importances
+---------------------------
+P.Inv:              0.0000
+Gamma:              0.0000
+Gamma-Inv:          1.0000
+Frequencies:        1.0000
+---------------------------
+Model averaged estimates
+---------------------------
+P.Inv:              0.4955
+Alpha:              0.2559
+Alpha-P.Inv:        0.7373
+P.Inv-Alpha:        0.3880
+Frequencies:        0.3074 0.3417 0.1143 0.2367 
+
+Commands:
+  > phyml  -i /Users/gwenddolenkettenburg/Desktop/RAxML/ranomafana_lemurs_cytochromeB_align.fas -m 010232 -f m -v e -a e -c 4 -o tlr
+  > raxmlHPC-SSE3 -s /Users/gwenddolenkettenburg/Desktop/RAxML/ranomafana_lemurs_cytochromeB_align.fas -m GTRGAMMAIX -n EXEC_NAME -p PARSIMONY_SEED
+  > raxml-ng --msa /Users/gwenddolenkettenburg/Desktop/RAxML/ranomafana_lemurs_cytochromeB_align.fas --model TIM2+I+G4
+  > paup -s /Users/gwenddolenkettenburg/Desktop/RAxML/ranomafana_lemurs_cytochromeB_align.fas
+  > iqtree -s /Users/gwenddolenkettenburg/Desktop/RAxML/ranomafana_lemurs_cytochromeB_align.fas -m TIM2+I+G4
+
+AIC       model              K            lnL          score          delta    weight
+--------------------------------------------------------------------------------
+       1  TIM2+I+G4          8     -6852.3115     13762.6230         0.0000    0.8741
+       2  GTR+I+G4          10     -6852.2493     13766.4987         3.8756    0.1259
+       3  TIM2+G4            7     -6867.0501     13790.1003        27.4773    0.0000
+       4  TrN+I+G4           7     -6867.9037     13791.8073        29.1843    0.0000
+       5  TIM3+I+G4          8     -6867.2935     13792.5871        29.9641    0.0000
+       6  TIM1+I+G4          8     -6867.6480     13793.2959        30.6729    0.0000
+       7  GTR+G4             9     -6867.1102     13794.2205        31.5974    0.0000
+       8  TPM2uf+I+G4        7     -6874.8729     13805.7457        43.1227    0.0000
+       9  TVM+I+G4           9     -6875.2172     13810.4344        47.8114    0.0000
+      10  HKY+I+G4           6     -6879.6620     13813.3240        50.7010    0.0000
+--------------------------------------------------------------------------------
+Best model according to AIC
+---------------------------
+Model:              TIM2+I+G4
+lnL:                -6852.3115
+Frequencies:        0.3074 0.3417 0.1143 0.2367
+Subst. Rates:       6.1251 23.7840 6.1251 1.0000 92.2337 1.0000 
+Inv. sites prop:    0.3880
+Gamma shape:        0.7373
+Score:              13762.6230
+Weight:             0.8741
+---------------------------
+Parameter importances
+---------------------------
+P.Inv:              0.0000
+Gamma:              0.0000
+Gamma-Inv:          1.0000
+Frequencies:        1.0000
+---------------------------
+Model averaged estimates
+---------------------------
+P.Inv:              0.4945
+Alpha:              0.2560
+Alpha-P.Inv:        0.7313
+P.Inv-Alpha:        0.3876
+Frequencies:        0.3075 0.3419 0.1142 0.2364 
+
+Commands:
+  > phyml  -i /Users/gwenddolenkettenburg/Desktop/RAxML/ranomafana_lemurs_cytochromeB_align.fas -m 010232 -f m -v e -a e -c 4 -o tlr
+  > raxmlHPC-SSE3 -s /Users/gwenddolenkettenburg/Desktop/RAxML/ranomafana_lemurs_cytochromeB_align.fas -m GTRGAMMAIX -n EXEC_NAME -p PARSIMONY_SEED
+  > raxml-ng --msa /Users/gwenddolenkettenburg/Desktop/RAxML/ranomafana_lemurs_cytochromeB_align.fas --model TIM2+I+G4
+  > paup -s /Users/gwenddolenkettenburg/Desktop/RAxML/ranomafana_lemurs_cytochromeB_align.fas
+  > iqtree -s /Users/gwenddolenkettenburg/Desktop/RAxML/ranomafana_lemurs_cytochromeB_align.fas -m TIM2+I+G4
+
+AICc      model              K            lnL          score          delta    weight
+--------------------------------------------------------------------------------
+       1  TIM2+I+G4          8     -6852.3115     13763.6230         0.0000    0.8741
+       2  GTR+I+G4          10     -6852.2493     13767.4987         3.8756    0.1259
+       3  TIM2+G4            7     -6867.0501     13791.1003        27.4773    0.0000
+       4  TrN+I+G4           7     -6867.9037     13792.8073        29.1843    0.0000
+       5  TIM3+I+G4          8     -6867.2935     13793.5871        29.9641    0.0000
+       6  TIM1+I+G4          8     -6867.6480     13794.2959        30.6729    0.0000
+       7  GTR+G4             9     -6867.1102     13795.2205        31.5974    0.0000
+       8  TPM2uf+I+G4        7     -6874.8729     13806.7457        43.1227    0.0000
+       9  TVM+I+G4           9     -6875.2172     13811.4344        47.8114    0.0000
+      10  HKY+I+G4           6     -6879.6620     13814.3240        50.7010    0.0000
+--------------------------------------------------------------------------------
+Best model according to AICc
+---------------------------
+Model:              TIM2+I+G4
+lnL:                -6852.3115
+Frequencies:        0.3074 0.3417 0.1143 0.2367
+Subst. Rates:       6.1251 23.7840 6.1251 1.0000 92.2337 1.0000 
+Inv. sites prop:    0.3880
+Gamma shape:        0.7373
+Score:              13763.6230
+Weight:             0.8741
+---------------------------
+Parameter importances
+---------------------------
+P.Inv:              0.0000
+Gamma:              0.0000
+Gamma-Inv:          1.0000
+Frequencies:        1.0000
+---------------------------
+Model averaged estimates
+---------------------------
+P.Inv:              0.4945
+Alpha:              0.2560
+Alpha-P.Inv:        0.7313
+P.Inv-Alpha:        0.3876
+Frequencies:        0.3075 0.3419 0.1142 0.2364 
+
+Commands:
+  > phyml  -i /Users/gwenddolenkettenburg/Desktop/RAxML/ranomafana_lemurs_cytochromeB_align.fas -m 010232 -f m -v e -a e -c 4 -o tlr
+  > raxmlHPC-SSE3 -s /Users/gwenddolenkettenburg/Desktop/RAxML/ranomafana_lemurs_cytochromeB_align.fas -m GTRGAMMAIX -n EXEC_NAME -p PARSIMONY_SEED
+  > raxml-ng --msa /Users/gwenddolenkettenburg/Desktop/RAxML/ranomafana_lemurs_cytochromeB_align.fas --model TIM2+I+G4
+  > paup -s /Users/gwenddolenkettenburg/Desktop/RAxML/ranomafana_lemurs_cytochromeB_align.fas
+  > iqtree -s /Users/gwenddolenkettenburg/Desktop/RAxML/ranomafana_lemurs_cytochromeB_align.fas -m TIM2+I+G4
+Summary:
+
+Partition 1/1:
+                         Model         Score        Weight
+----------------------------------------------------------
+       BIC           TIM2+I+G4    13908.7732        0.9990
+       AIC           TIM2+I+G4    13762.6230        0.8741
+      AICc           TIM2+I+G4    13763.6230        0.8741
+
+Execution results written to /Users/gwenddolenkettenburg/Desktop/RAxML/RAxML_GUI_ModelTest_ranomafana_lemurs_cytochromeB_align.out
+Starting tree written to /Users/gwenddolenkettenburg/Desktop/RAxML/RAxML_GUI_ModelTest_ranomafana_lemurs_cytochromeB_align.tree
