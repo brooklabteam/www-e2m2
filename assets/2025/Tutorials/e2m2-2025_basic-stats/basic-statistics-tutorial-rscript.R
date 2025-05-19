@@ -35,10 +35,6 @@
 
 options(stringsAsFactors = F, scipen = 999, digits = 4)
 
-#to find files within the Rproject
-#install.packages("here")
-library(here)
-
 #visualization and exploration
 library(ggplot2); theme_set(theme_bw())
 library(skimr)
@@ -52,9 +48,9 @@ library(dplyr)
 
 # Load the Data ###################################
 
-penguins <- read.csv(here("data/penguins.csv"))
+penguins <- read.csv("data/penguins.csv")
 
-flowers <- read.csv(here("data/flowers.csv"))
+flowers <- read.csv("data/flowers.csv")
 
 # Data Exploration ##############################
 
