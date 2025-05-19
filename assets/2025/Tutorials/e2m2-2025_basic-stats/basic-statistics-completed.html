@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Michelle Evans, mv.evans.phd@gmail.com">
+<meta name="dcterms.date" content="2024-03-11">
+
+<title>E2M2 2024: Basic Statistics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="basic-statistics-completed_files/libs/clipboard/clipboard.min.js"></script>
+<script src="basic-statistics-completed_files/libs/quarto-html/quarto.js"></script>
+<script src="basic-statistics-completed_files/libs/quarto-html/popper.min.js"></script>
+<script src="basic-statistics-completed_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="basic-statistics-completed_files/libs/quarto-html/anchor.min.js"></script>
+<link href="basic-statistics-completed_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="basic-statistics-completed_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="basic-statistics-completed_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="basic-statistics-completed_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="basic-statistics-completed_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#load-the-packages-for-this-tutorial" id="toc-load-the-packages-for-this-tutorial" class="nav-link" data-scroll-target="#load-the-packages-for-this-tutorial">Load the packages for this tutorial</a></li>
+  <li><a href="#load-the-data" id="toc-load-the-data" class="nav-link" data-scroll-target="#load-the-data">Load the data</a></li>
+  <li><a href="#data-exploration" id="toc-data-exploration" class="nav-link" data-scroll-target="#data-exploration">Data Exploration</a>
+  <ul class="collapse">
+  <li><a href="#penguins" id="toc-penguins" class="nav-link" data-scroll-target="#penguins">Penguins</a></li>
+  </ul></li>
+  <li><a href="#verifying-model-assumptions" id="toc-verifying-model-assumptions" class="nav-link" data-scroll-target="#verifying-model-assumptions">Verifying Model Assumptions</a>
+  <ul class="collapse">
+  <li><a href="#linearity" id="toc-linearity" class="nav-link" data-scroll-target="#linearity">Linearity</a></li>
+  <li><a href="#independence" id="toc-independence" class="nav-link" data-scroll-target="#independence">Independence</a></li>
+  <li><a href="#normality" id="toc-normality" class="nav-link" data-scroll-target="#normality">Normality</a></li>
+  <li><a href="#homogeneity-of-variance" id="toc-homogeneity-of-variance" class="nav-link" data-scroll-target="#homogeneity-of-variance">Homogeneity of Variance</a></li>
+  </ul></li>
+  <li><a href="#conducting-correlations" id="toc-conducting-correlations" class="nav-link" data-scroll-target="#conducting-correlations">Conducting Correlations</a>
+  <ul class="collapse">
+  <li><a href="#pearsons" id="toc-pearsons" class="nav-link" data-scroll-target="#pearsons">Pearson’s</a></li>
+  <li><a href="#spearmans" id="toc-spearmans" class="nav-link" data-scroll-target="#spearmans">Spearman’s</a></li>
+  </ul></li>
+  <li><a href="#comparisons-between-groups" id="toc-comparisons-between-groups" class="nav-link" data-scroll-target="#comparisons-between-groups">Comparisons between groups</a>
+  <ul class="collapse">
+  <li><a href="#comparison-between-two-groups" id="toc-comparison-between-two-groups" class="nav-link" data-scroll-target="#comparison-between-two-groups">Comparison between two groups</a>
+  <ul class="collapse">
+  <li><a href="#parametric" id="toc-parametric" class="nav-link" data-scroll-target="#parametric">Parametric</a></li>
+  <li><a href="#non-parametric" id="toc-non-parametric" class="nav-link" data-scroll-target="#non-parametric">Non-Parametric</a></li>
+  </ul></li>
+  <li><a href="#comparison-between-more-than-2-groups" id="toc-comparison-between-more-than-2-groups" class="nav-link" data-scroll-target="#comparison-between-more-than-2-groups">Comparison between more than 2 groups</a>
+  <ul class="collapse">
+  <li><a href="#parametric-1" id="toc-parametric-1" class="nav-link" data-scroll-target="#parametric-1">Parametric</a></li>
+  <li><a href="#non-parametric-1" id="toc-non-parametric-1" class="nav-link" data-scroll-target="#non-parametric-1">Non-Parametric</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">E2M2 2024: Basic Statistics</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Michelle Evans, mv.evans.phd@gmail.com </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 11, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p>This is a <a href="https://quarto.org/">Quarto</a> document. It allows us to combine background text, code, and its output in one document. It can be “rendered” into an HTML file that can be read in any browser. All code chunks look like the following below, and can be run in RStudio just like a line in a standard <code>.R</code> script.</p>
+<p>Some chunks may not yet be filled in. We will fill these in during the exercise part of the lecture. They currently have <code>eval=FALSE</code> written at the top of them. Once you have filled in those chunks, you can change this to <code>eval=TRUE</code>.</p>
+<p>A “code-only” version of this tutorial is available in the <code>basic-statistic-tutorial.R</code> script. A completed version of tutorial is available in <code>basic-statistics-completed.qmd</code>.</p>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>This is a tutorial that was developed as part of the E2M2 workshop held in March 2024. It is based on code developed by Michelle Evans. If you have any questions, please send an email to Michelle at <a href="mailto:mv.evans.phd@gmail.com">mv.evans.phd@gmail.com</a>.</p>
+<p>This tutorial introduces several basic statistical methods used to assess the relationship between variables and compare values between groups.</p>
+<p>By the end of the tutorial, you should be able to:</p>
+<ul>
+<li>Visualize your data and determine if it is parametric or non-parametric</li>
+<li>Conduct a correlation analysis</li>
+<li>Conduct two-sample t-tests</li>
+<li>Conduct an ANOVA analysis</li>
+</ul>
+</section>
+<section id="load-the-packages-for-this-tutorial" class="level1">
+<h1>Load the packages for this tutorial</h1>
+<p>Here are the packages we’ll need for this tutorial. I also choose to set some base configurations that I like, such as never reading in strings as factors, setting a limit for the number of digits to include when printing to the console, and setting a base theme for <code>ggplot</code>.</p>
+<p>Remember that you may need to install packages that you don’t already have installed on your computer using <code>install.packages("package-name")</code>. There is an example commented out in the code chunk below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">stringsAsFactors =</span> F, <span class="at">scipen =</span> <span class="dv">999</span>, <span class="at">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#to find files within the Rproject</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("here")</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#visualization and exploration</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2); <span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#statistics</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">#data manipulation</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="load-the-data" class="level1">
+<h1>Load the data</h1>
+<p>We will use several datasets for this tutorial:</p>
+<p><strong>Palmer penguins</strong>: A dataset of penguin body size, mass, sex, and species collected at the Palmer Station in Antarctica. <a href="https://allisonhorst.github.io/palmerpenguins/">More info here</a>. I have cleaned this data slightly so it is easier to use in this course.</p>
+<p><strong>Flowers</strong>: This is a subset of the well-known <code>iris</code> dataset used in many R tutorials containing just the <em>Versicolor</em> species. It has info on flower sepal and petal size.</p>
+<p>We load the datasets using <code>read.csv</code>. CSV files are an excellent way to store data because they can be read by R and spreadsheet software (such as Excel) and are very small. They also encourage you to store information in computer readable formats rather than as cell formatting. We use the <code>here</code> package to ensure that file path begins at the folder containing our <code>.Rproject</code> file, also known as a working directory.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">"data/penguins.csv"</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>flowers <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">"data/flowers.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="data-exploration" class="level1">
+<h1>Data Exploration</h1>
+<section id="penguins" class="level2">
+<h2 class="anchored" data-anchor-id="penguins">Penguins</h2>
+<p>We will explore the <code>penguins</code> dataset for this exercise.</p>
+<p>First, let’s look at the datasets structure and variables. We can do that using <code>head</code> in base R and <code>skim</code> from the <code>skimr</code> package.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  species    island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+1  Adelie Torgersen           39.1          18.7               181        3750
+2  Adelie Torgersen           39.5          17.4               186        3800
+3  Adelie Torgersen           40.3          18.0               195        3250
+4  Adelie Torgersen           36.7          19.3               193        3450
+5  Adelie Torgersen           39.3          20.6               190        3650
+6  Adelie Torgersen           38.9          17.8               181        3625
+     sex year
+1   male 2007
+2 female 2007
+3 female 2007
+4 female 2007
+5   male 2007
+6 female 2007</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>skimr<span class="sc">::</span><span class="fu">skim</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Name</td>
+<td style="text-align: left;">penguins</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of rows</td>
+<td style="text-align: left;">333</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of columns</td>
+<td style="text-align: left;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">_______________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Column type frequency:</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">________________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Group variables</td>
+<td style="text-align: left;">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: character</strong></p>
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 13%">
+<col style="width: 19%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 8%">
+<col style="width: 12%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">min</th>
+<th style="text-align: right;">max</th>
+<th style="text-align: right;">empty</th>
+<th style="text-align: right;">n_unique</th>
+<th style="text-align: right;">whitespace</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">species</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">island</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sex</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 10%">
+<col style="width: 14%">
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">p0</th>
+<th style="text-align: right;">p25</th>
+<th style="text-align: right;">p50</th>
+<th style="text-align: right;">p75</th>
+<th style="text-align: right;">p100</th>
+<th style="text-align: left;">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">bill_length_mm</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">43.99</td>
+<td style="text-align: right;">5.47</td>
+<td style="text-align: right;">32.1</td>
+<td style="text-align: right;">39.5</td>
+<td style="text-align: right;">44.5</td>
+<td style="text-align: right;">48.6</td>
+<td style="text-align: right;">59.6</td>
+<td style="text-align: left;">▃▇▇▆▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bill_depth_mm</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">17.16</td>
+<td style="text-align: right;">1.97</td>
+<td style="text-align: right;">13.1</td>
+<td style="text-align: right;">15.6</td>
+<td style="text-align: right;">17.3</td>
+<td style="text-align: right;">18.7</td>
+<td style="text-align: right;">21.5</td>
+<td style="text-align: left;">▅▆▇▇▂</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">flipper_length_mm</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">200.97</td>
+<td style="text-align: right;">14.02</td>
+<td style="text-align: right;">172.0</td>
+<td style="text-align: right;">190.0</td>
+<td style="text-align: right;">197.0</td>
+<td style="text-align: right;">213.0</td>
+<td style="text-align: right;">231.0</td>
+<td style="text-align: left;">▂▇▃▅▃</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">body_mass_g</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4207.06</td>
+<td style="text-align: right;">805.22</td>
+<td style="text-align: right;">2700.0</td>
+<td style="text-align: right;">3550.0</td>
+<td style="text-align: right;">4050.0</td>
+<td style="text-align: right;">4775.0</td>
+<td style="text-align: right;">6300.0</td>
+<td style="text-align: left;">▃▇▅▃▂</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">year</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2008.04</td>
+<td style="text-align: right;">0.81</td>
+<td style="text-align: right;">2007.0</td>
+<td style="text-align: right;">2007.0</td>
+<td style="text-align: right;">2008.0</td>
+<td style="text-align: right;">2009.0</td>
+<td style="text-align: right;">2009.0</td>
+<td style="text-align: left;">▇▁▇▁▇</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>During this class, we are going to try and explore if there is a difference in penguin body size between penguin species and island. We can make a boxplot of this to start understanding what our data looks like.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> body_mass_g, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="basic-statistics-completed_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We also want to know what the distribution of this data is, so that we can start to get an idea of if it is parametric or non-parametric. To do that, we use a <strong>histogram</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x=</span> body_mass_g, <span class="at">fill =</span> species,  <span class="at">group =</span> species)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species, <span class="at">nrow =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="basic-statistics-completed_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We also will later look at the correlation between different measures of body size. Let’s look at the relationship between two of them know with a <strong>scatterplot</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="basic-statistics-completed_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="verifying-model-assumptions" class="level1">
+<h1>Verifying Model Assumptions</h1>
+<p>For parametric tests, there are four model assumptions that must be met:</p>
+<ul>
+<li><p><strong>Linearity</strong> : The relation between two variables is linear</p></li>
+<li><p><strong>Independence</strong> : Each observation is independent of all other observations</p></li>
+<li><p><strong>Normality</strong>: The distribution of the data must be normal</p></li>
+<li><p><strong>Homogeneity of variance</strong>: The variance of subsets or groups of data should be equal</p></li>
+</ul>
+<section id="linearity" class="level2">
+<h2 class="anchored" data-anchor-id="linearity">Linearity</h2>
+<p>Linearity is most easily visualized via a scatter plot. Let’s compare <code>Sepal.Length</code> and <code>Petal.Length</code> in the <code>flowers</code> dataset in a scatter plot using <code>geom_point</code>.</p>
+<p>Fill in the chunk below with the <code>data</code> and <code>x</code> and <code>y</code> variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> flowers, <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Petal.Length)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="basic-statistics-completed_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Is the relationship between these variables linear (i.e.&nbsp;a straight line)? If not, we may need to use a non-parametric method.</p>
+<p>What about if we compare <code>Sepal.Length</code> and <code>Sepal.Width</code>?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> flowers, <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Sepal.Width)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="basic-statistics-completed_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="independence" class="level2">
+<h2 class="anchored" data-anchor-id="independence">Independence</h2>
+<p>Independence is determined by the study-design, and there isn’t a statistical test to do for it. But, we can learn some things about study-design from a dataset. For example, in the <code>penguins</code> dataset, there is a column <code>island</code> that represents the survey site. This could be a hint that all the data may not be independent in this dataset.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "species"           "island"            "bill_length_mm"   
+[4] "bill_depth_mm"     "flipper_length_mm" "body_mass_g"      
+[7] "sex"               "year"             </code></pre>
+</div>
+</div>
+</section>
+<section id="normality" class="level2">
+<h2 class="anchored" data-anchor-id="normality">Normality</h2>
+<p>Normality refers to the distribution of the data. Normal data resembles a bell-curve, which is symmetrical on both sides.</p>
+<p>We can visualize the distribution of data using a histogram or a density plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="basic-statistics-completed_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="basic-statistics-completed_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This data is right-skewed, meaning it has a longer “tail” on the right side. It may not be perfectly normally distributed because it contains multiple penguin species. We can plot the histogram using different fills and panels for each species to see if that improves things.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="basic-statistics-completed_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Within each group (species), the data seems to be normally distributed, which means it meets this assumption if we are comparing between the groups.</p>
+<p>We can also test for if the data is normal using a Shapiro-Wilk’s test.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(penguins<span class="sc">$</span>body_mass_g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  penguins$body_mass_g
+W = 0.96, p-value = 0.00000004</code></pre>
+</div>
+</div>
+<p>This is a hypothesis test. The null hypothesis is that the data is normally distributed, and the alternative hypothesis is that the data is not normally distributed. Because the p-value is less than 0.05, we have enough evidence to infer that the <code>body_mass_g</code> variable is not normally distributed.</p>
+<p>However, we can also apply this test to one class, for example the Chinstrap species of penguin.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(penguins<span class="sc">$</span>body_mass_g[penguins<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Chinstrap"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  penguins$body_mass_g[penguins$species == "Chinstrap"]
+W = 0.98, p-value = 0.6</code></pre>
+</div>
+</div>
+<p>Because the p-value is greater than 0.05, we have no reason to believe that the distribution of body mass for this species of penguin is not normally distributed.</p>
+</section>
+<section id="homogeneity-of-variance" class="level2">
+<h2 class="anchored" data-anchor-id="homogeneity-of-variance">Homogeneity of Variance</h2>
+<p>Homogeniety of variance means the variance of each group is the same.</p>
+<p>We can visualize this using a boxplot or violin plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="basic-statistics-completed_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="basic-statistics-completed_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>There are several tests for homogenity of variance:</p>
+<p><strong>Bartlett’s test</strong>: more sensitive to if the distribution of data is not normal</p>
+<p><strong>Levene’s test</strong>: less sensitive to non-normal data</p>
+<p>We will use Levene’s test because it is generally more robust. The Levene’s test is in the <code>car</code> package. It uses a formula similar to those used in linear regression. The continuous variable is to the left of the tilde (~) and the grouping variable is to the right.</p>
+<p>Fill in the formula below to test if the variance of <code>body_mass_g</code> is equal across the <code>species</code> group in the <code>penguins</code> dataset</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">leveneTest</span>(body_mass_g <span class="sc">~</span> species, <span class="at">data =</span> penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Levene's Test for Homogeneity of Variance (center = median)
+       Df F value Pr(&gt;F)   
+group   2    5.13 0.0064 **
+      330                  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>It is returning the results of a null hypothesis test. The null hypothesis is that all variances are equal across groups. The alternative hypothesis that we are testing is that the variances are not equal across groups. Because the p-value (<code>Pr(&gt;F)</code>) is below 0.05, we would infer that the assumption of homogeneity of variance is violated (i.e.&nbsp;that the variances are different across the groups <code>species</code>).</p>
+</section>
+</section>
+<section id="conducting-correlations" class="level1">
+<h1>Conducting Correlations</h1>
+<p>Correlations are used to compare the strength of an association between two continuous variables. They range between -1 (perfectly negatively correlated) and +1 (perfectly positively correlated).</p>
+<p>Before applying a test of correlation, we should first visualize the data using a scatterplot. One variable is plotted on the x-axis and the other on the y-axis. Here we will compare flower sepal length and petal width from the <code>flowers</code> dataset. Fill in the code chunk below using <code>geom_point</code> from <code>ggplot</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> flowers, <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Petal.Width)) <span class="sc">+</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="basic-statistics-completed_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>While these two variables have a positive monotonic (moving in one direction) association, it may not necessarily be linear. A Spearman’s correlation may be more appropriate for these variables.</p>
+<p>Let’s explore two other variables in the dataset: sepal length and sepal width.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> flowers, <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Sepal.Width)) <span class="sc">+</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="basic-statistics-completed_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This relationship looks more linear, and could be assessed via a Pearson’s correlation. However, we must also verify that the data is normally distributed. We do this individually by variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> flowers, <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length)) <span class="sc">+</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="basic-statistics-completed_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flowers<span class="sc">$</span>Sepal.Length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  flowers$Sepal.Length
+W = 0.98, p-value = 0.5</code></pre>
+</div>
+</div>
+<p>Fill in the chunk below with the same assessment for the variable <code>Sepal.Width</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flowers<span class="sc">$</span>Sepal.Width)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  flowers$Sepal.Width
+W = 0.97, p-value = 0.3</code></pre>
+</div>
+</div>
+<p>Becuase both variables are normally distributed, we can proceed with a Pearson’s correlation test.</p>
+<section id="pearsons" class="level2">
+<h2 class="anchored" data-anchor-id="pearsons">Pearson’s</h2>
+<p>Both types of correlation tests use the <code>cor.test</code> function. You specify which type of test to use via the <code>method</code> argument. If you don’t specify, it will use a Pearson’s test by default.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(flowers<span class="sc">$</span>Sepal.Length, flowers<span class="sc">$</span>Sepal.Width, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  flowers$Sepal.Length and flowers$Sepal.Width
+t = 4.3, df = 48, p-value = 0.00009
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.2900 0.7016
+sample estimates:
+   cor 
+0.5259 </code></pre>
+</div>
+</div>
+<p>This is a null hypothesis test, where the null hypothesis is that the true correlation is equal to zero and the alternative hypothesis is that the true correlation is not equal to zero. We assess the strength of the correlation via the <code>cor</code> parameter and the statistical significance of the correlation via the <code>p-value</code>.</p>
+<p>Because the <code>cor</code> value is positive and relatively high in the range of -1 to +1, we can infer that the association between these variables is positive and moderately strong. The p-value being low further supports this and suggests that the association is statistically significantly different from no association.</p>
+</section>
+<section id="spearmans" class="level2">
+<h2 class="anchored" data-anchor-id="spearmans">Spearman’s</h2>
+<p>In the data visualization above, Sepal Length and Petal Width seemed to have a non-linear relationship. They would be better assessed via a Spearman’s correlation, called rho.</p>
+<p>Fill in the chunk below for the appropriate variables, ensuring you use the “spearman” <code>method</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(flowers<span class="sc">$</span>Sepal.Length, flowers<span class="sc">$</span>Sepal.Width, <span class="at">method =</span> <span class="st">"spearman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Spearman's rank correlation rho
+
+data:  flowers$Sepal.Length and flowers$Sepal.Width
+S = 10046, p-value = 0.0001
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+   rho 
+0.5176 </code></pre>
+</div>
+</div>
+<p>Is this association positive or negative? How strong is it? Is it statistically significative?</p>
+</section>
+</section>
+<section id="comparisons-between-groups" class="level1">
+<h1>Comparisons between groups</h1>
+<p>There are several statistical tests for comparing continuous variables (<code>numeric</code>, <code>integer</code>) between groups (<code>factors</code>). Which one to use depends on if the data is parameteric or non-parametric and on how many groups you have.</p>
+<p><img src="group-tests.png" class="img-fluid"></p>
+<p>These tests will tell you whether the difference between groups is significant, but it will not calculate the effect size (or the magnitude of the difference). You can either report the means of each group, or use a post-hoc test to calculate the effect size. Today we will just focus on the means or medians. See the <a href="https://easystats.github.io/effectsize/">effectsize</a> package for more info on calculating effect sizes.</p>
+<section id="comparison-between-two-groups" class="level2">
+<h2 class="anchored" data-anchor-id="comparison-between-two-groups">Comparison between two groups</h2>
+<section id="parametric" class="level3">
+<h3 class="anchored" data-anchor-id="parametric">Parametric</h3>
+<p>If your data is parametric (normally distributed, independent, equal variance), you can use a t-test to compare a variable between groups. Both types of t-tests for two groups (two-sample and Welch’s) use the <code>t.test</code> function, but differ in their assumption of equal variance via the <code>var.equal</code> argument. Use <code>?t.test</code> to access the help file for <code>t.test</code> to see what values this argument takes.</p>
+<p>We can apply this to test for differences in <code>bill_length_mm</code> across <code>sex</code> in the <code>penguins</code> data. This variable is normally distributed and has equal variance among groups.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> sex, <span class="at">y =</span> bill_length_mm)) <span class="sc">+</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="basic-statistics-completed_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bill_length_mm <span class="sc">~</span> sex, <span class="at">data =</span> penguins, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Two Sample t-test
+
+data:  bill_length_mm by sex
+t = -6.7, df = 331, p-value = 0.0000000001
+alternative hypothesis: true difference in means between group female and group male is not equal to 0
+95 percent confidence interval:
+ -4.867 -2.649
+sample estimates:
+mean in group female   mean in group male 
+               42.10                45.85 </code></pre>
+</div>
+</div>
+<p>This test returns information on the alternative hypothesis that the mean bill length differs between penguin sex. It provides the mean of each group (male and female), as well as the test statistics (t, df, p-value). All of these would be reported in a manuscript.</p>
+</section>
+<section id="non-parametric" class="level3">
+<h3 class="anchored" data-anchor-id="non-parametric">Non-Parametric</h3>
+<p>If your data is not normally distributed, you would use a Mann Whitney U (or Wilcoxon rank-sum Test), to compare measurements between two groups. This is done via the <code>wilcox.test</code> function.</p>
+<p><code>bill_length_mm</code> does not seem to be normally distributed. We would like to compare the length of penguins’ bills across islands. However, because the dataset has three islands, to perform this example we will need to subset the data to only two islands, Biscoe and Dream, because a Mann Whitney U test can only compare two groups.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> island, <span class="at">y =</span> bill_length_mm)) <span class="sc">+</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="basic-statistics-completed_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm)) <span class="sc">+</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="basic-statistics-completed_files/figure-html/unnamed-chunk-26-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(bill_length_mm<span class="sc">~</span>island, <span class="at">data =</span> penguins,</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">subset =</span> island <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Biscoe"</span>, <span class="st">"Dream"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon rank sum test with continuity correction
+
+data:  bill_length_mm by island
+W = 10846, p-value = 0.2
+alternative hypothesis: true location shift is not equal to 0</code></pre>
+</div>
+</div>
+<p>As we may have predicted from the boxplot, the variable <code>bill_length_mm</code> does not differ between the two islands.</p>
+<p>This test does not report a summary statistic for each group, but we can calculate it ourselves using a combination of <code>group_by</code> and <code>summarise</code> function from <code>dplyr</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(island) <span class="sc">|&gt;</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">median =</span> <span class="fu">median</span>(bill_length_mm),</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>            <span class="co">#estimate IQR range too</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">low_IQR =</span> <span class="fu">quantile</span>(bill_length_mm, <span class="fl">0.25</span>),</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">upp_IQR =</span> <span class="fu">quantile</span>(bill_length_mm, <span class="fl">0.75</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+  island    median low_IQR upp_IQR
+  &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1 Biscoe      45.8    41.8    48.8
+2 Dream       45.2    39.2    49.9
+3 Torgersen   39      36.7    41.1</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="comparison-between-more-than-2-groups" class="level2">
+<h2 class="anchored" data-anchor-id="comparison-between-more-than-2-groups">Comparison between more than 2 groups</h2>
+<section id="parametric-1" class="level3">
+<h3 class="anchored" data-anchor-id="parametric-1">Parametric</h3>
+<p>An ANOVA (Analysis of Variance) Test is used to compare the means between 3 or more groups if the data is parametric. It uses the function <code>aov</code>. The test is provided using the formula format with a tilde (~). Use <code>?aov</code> to see how to apply an ANOVA to explore if <code>body_mass_g</code> differs across <code>species</code> in the penguin dataset. The output of <code>aov</code> is not very informative, so it is better to save as an object and use <code>summary</code>.</p>
+<p>Fill in the chunk below to run the ANOVA test.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>anova_test <span class="ot">&lt;-</span> <span class="fu">aov</span>(body_mass_g<span class="sc">~</span>species, <span class="at">data =</span> penguins)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(anova_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             Df    Sum Sq  Mean Sq F value              Pr(&gt;F)    
+species       2 145190219 72595110     342 &lt;0.0000000000000002 ***
+Residuals   330  70069447   212332                                
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>In this output, we are particularly concerned with a couple of values. <code>Df</code> is the degrees of freedom, equal to the number of groups (k) - 1. <code>Pr(&gt;F)</code> is the p-value, representing the probability that the difference among groups is due to chance.</p>
+<p>This gives us informatoin about whether body size differs between species, but does not tell us which species have different body sizes. For that, we need to perform a <em>post-hoc</em> or <em>pairwise</em> comparison. There are multiple types of these tests, but we will use a Bonferroni for now. Read more about the other options <a href="https://www.statology.org/tukey-vs-bonferroni-vs-scheffe/">here</a>.</p>
+<p>Based on our data visualization, we suspect that Gentoo penguins are significantly larger than the other two species, so will a post-hoc comparisons to compare Gentoo penguins with Adelie and Chinstrap penguins and calculate and adjusted p-value.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(penguins<span class="sc">$</span>body_mass_g, penguins<span class="sc">$</span>species, </span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">p.adjust.method =</span> <span class="st">"bonferroni"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pairwise comparisons using t tests with pooled SD 
+
+data:  penguins$body_mass_g and penguins$species 
+
+          Adelie              Chinstrap          
+Chinstrap 1                   -                  
+Gentoo    &lt;0.0000000000000002 &lt;0.0000000000000002
+
+P value adjustment method: bonferroni </code></pre>
+</div>
+</div>
+<p>Based on this, we can see that the difference between Adelie and Chinstrap penguins is not significant (p-value = 1), but the differences between Gentoo and the other two species have very low p-values, suggesting those differences are statistically significant. These pairwise differences are often illustrated on a plot using letters to denote groups with significant differences, like below:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">label =</span> <span class="fu">c</span>(<span class="st">"a"</span>,<span class="st">"a"</span>, <span class="st">"b"</span>),</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">x =</span> <span class="fu">levels</span>(<span class="fu">factor</span>(penguins<span class="sc">$</span>species)),</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>                        <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">5000</span>,<span class="dv">5000</span>,<span class="dv">6450</span>)), </span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">label =</span> label), <span class="at">color =</span> <span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="basic-statistics-completed_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="non-parametric-1" class="level3">
+<h3 class="anchored" data-anchor-id="non-parametric-1">Non-Parametric</h3>
+<p>ANOVA tests are more robust than t-tests to data with unequal variance, but still require your data to be normally distributed. If your data is not normally distributed, you can use a Krusal-Wallis test to compare the rank of values between groups (similar to the Spearman’s correlation).</p>
+<p>In our dataset, the variable <code>flipper_length_mm</code> seems to not be normally distributed, especially on Biscoe island.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x  =</span> flipper_length_mm)) <span class="sc">+</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()<span class="sc">+</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>island, <span class="at">nrow =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="basic-statistics-completed_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We will use a the Kruskal-Wallis test to compare the flipper lengths of penguins across the islands. The function <code>kruskal.test</code> accepts data in a formula format.</p>
+<p>Fill in the code chunk below in the format of <code>response ~ group</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(flipper_length_mm <span class="sc">~</span> island, <span class="at">data =</span> penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Kruskal-Wallis rank sum test
+
+data:  flipper_length_mm by island
+Kruskal-Wallis chi-squared = 103, df = 2, p-value &lt;0.0000000000000002</code></pre>
+</div>
+</div>
+<p>How would we interpret these results?</p>
+<p>This result confirms that the flipper lengths are different across the islands, but like the ANOVA, does not tell us which islands have significantly different flipper lengths. We will need to use a <em>post-hoc</em> comparison to estimate that. The <code>pairwise.wilcox.test</code> function performs this test, and we will need to specify the <code>method</code> we want to use for non-parametric data. We can again use the Bonferroni method.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairwise.wilcox.test</span>(penguins<span class="sc">$</span>flipper_length_mm, penguins<span class="sc">$</span>island,</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">p.adjust.method =</span> <span class="st">"bonferroni"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+
+data:  penguins$flipper_length_mm and penguins$island 
+
+          Biscoe               Dream
+Dream     &lt; 0.0000000000000002 -    
+Torgersen 0.00000000001        0.7  
+
+P value adjustment method: bonferroni </code></pre>
+</div>
+</div>
+<p>This post-hoc test confirms what we saw in the plot. Flipper length is different on Biscoe island than the other two islands.</p>
+</section>
+</section>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>We followed these steps to conduct basic statistical analyses of our data:</p>
+<ol type="1">
+<li>Visualized data</li>
+<li>Verified that data followed assumptions</li>
+<li>Applied statistical tests</li>
+<li>Conducted post-hoc comparisons (for multi-group)</li>
+</ol>
+<p>However, you may have noticed that we visualized our data at nearly all of these steps, not just the beginning. Visualizing your data is the best way to better understand your data, ensure you are following statistical assumptions, and properly interpreting statistical tests. The best statistical technique you can learn is how to visualize your data in multiple ways and how to interpret figures, because it is used in all statistical approaches.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

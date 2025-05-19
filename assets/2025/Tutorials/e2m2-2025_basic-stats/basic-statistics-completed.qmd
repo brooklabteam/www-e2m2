@@ -1,0 +1,431 @@
+---
+title: "E2M2 2024: Basic Statistics"
+author: "Michelle Evans, mv.evans.phd@gmail.com"
+date: "March 11 2024"
+format: 
+  html:
+    toc: true
+execute: 
+  warning: false
+  cache: false
+---
+
+This is a [Quarto](https://quarto.org/) document. It allows us to combine background text, code, and its output in one document. It can be "rendered" into an HTML file that can be read in any browser. All code chunks look like the following below, and can be run in RStudio just like a line in a standard `.R` script.
+
+Some chunks may not yet be filled in. We will fill these in during the exercise part of the lecture. They currently have `eval=FALSE` written at the top of them. Once you have filled in those chunks, you can change this to `eval=TRUE`.
+
+A "code-only" version of this tutorial is available in the `basic-statistic-tutorial.R` script. A completed version of tutorial is available in `basic-statistics-completed.qmd`.
+
+# Introduction
+
+This is a tutorial that was developed as part of the E2M2 workshop held in March 2024. It is based on code developed by Michelle Evans. If you have any questions, please send an email to Michelle at [mv.evans.phd@gmail.com](mailto:mv.evans.phd@gmail.com).
+
+This tutorial introduces several basic statistical methods used to assess the relationship between variables and compare values between groups.
+
+By the end of the tutorial, you should be able to:
+
+- Visualize your data and determine if it is parametric or non-parametric
+- Conduct a correlation analysis
+- Conduct two-sample t-tests
+- Conduct an ANOVA analysis
+
+# Load the packages for this tutorial
+
+Here are the packages we'll need for this tutorial. I also choose to set some base configurations that I like, such as never reading in strings as factors, setting a limit for the number of digits to include when printing to the console, and setting a base theme for `ggplot`.
+
+Remember that you may need to install packages that you don't already have installed on your computer using `install.packages("package-name")`. There is an example commented out in the code chunk below.
+
+```{r}
+#| output: false
+
+options(stringsAsFactors = F, scipen = 999, digits = 4)
+
+#to find files within the Rproject
+#install.packages("here")
+library(here)
+
+#visualization and exploration
+library(ggplot2); theme_set(theme_bw())
+library(skimr)
+
+#statistics
+library(car)
+
+#data manipulation
+library(tidyr)
+library(dplyr)
+```
+
+# Load the data 
+
+We will use several datasets for this tutorial:
+
+**Palmer penguins**: A dataset of penguin body size, mass, sex, and species collected at the Palmer Station in Antarctica. [More info here](https://allisonhorst.github.io/palmerpenguins/). I have cleaned this data slightly so it is easier to use in this course.
+
+**Flowers**: This is a subset of the well-known `iris` dataset used in many R tutorials containing just the *Versicolor* species. It has info on flower sepal and petal size.
+
+We load the datasets using `read.csv`. CSV files are an excellent way to store data because they can be read by R and spreadsheet software (such as Excel) and are very small. They also encourage you to store information in computer readable formats rather than as cell formatting. We use the `here` package to ensure that file path begins at the folder containing our `.Rproject` file, also known as a working directory.
+
+
+```{r}
+penguins <- read.csv(here("data/penguins.csv"))
+
+flowers <- read.csv(here("data/flowers.csv"))
+```
+
+# Data Exploration
+
+## Penguins
+
+We will explore the `penguins` dataset for this exercise.
+
+First, let's look at the datasets structure and variables. We can do that using `head` in base R and `skim` from the `skimr` package.
+
+```{r}
+head(penguins)
+```
+
+```{r}
+skimr::skim(penguins)
+```
+
+During this class, we are going to try and explore if there is a difference in penguin body size between penguin species and island. We can make a boxplot of this to start understanding what our data looks like.
+
+```{r}
+ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
+  geom_boxplot()
+```
+
+We also want to know what the distribution of this data is, so that we can start to get an idea of if it is parametric or non-parametric. To do that, we use a **histogram**. 
+
+```{r}
+ggplot(penguins, aes(x= body_mass_g, fill = species,  group = species)) +
+  geom_histogram() +
+  facet_wrap(~species, nrow = 3)
+```
+
+We also will later look at the correlation between different measures of body size. Let's look at the relationship between two of them know with a **scatterplot**.
+
+```{r}
+ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, color = species)) +
+  geom_point()
+```
+
+# Verifying Model Assumptions
+
+For parametric tests, there are four model assumptions that must be met:
+
+- **Linearity** : The relation between two variables is linear
+
+- **Independence** : Each observation is independent of all other observations
+
+- **Normality**: The distribution of the data must be normal
+
+- **Homogeneity of variance**: The variance of subsets or groups of data should be equal
+
+## Linearity
+
+Linearity is most easily visualized via a scatter plot. Let's compare `Sepal.Length` and `Petal.Length` in the `flowers` dataset in a scatter plot using `geom_point`.
+
+Fill in the chunk below with the `data` and `x` and `y` variables.
+
+```{r, eval = TRUE}
+ggplot(data = flowers, aes(x = Sepal.Length, y = Petal.Length)) +
+  geom_point()
+```
+
+Is the relationship between these variables linear (i.e. a straight line)? If not, we may need to use a non-parametric method.
+
+What about if we compare `Sepal.Length` and `Sepal.Width`?
+
+```{r}
+ggplot(data = flowers, aes(x = Sepal.Length, y = Sepal.Width)) +
+  geom_point()
+```
+
+
+## Independence
+
+Independence is determined by the study-design, and there isn't a statistical test to do for it. But, we can learn some things about study-design from a dataset. For example, in the `penguins` dataset, there is a column `island` that represents the survey site. This could be a hint that all the data may not be independent in this dataset.
+
+```{r}
+colnames(penguins)
+```
+
+## Normality
+
+Normality refers to the distribution of the data. Normal data resembles a bell-curve, which is symmetrical on both sides.
+
+We can visualize the distribution of data using a histogram or a density plot.
+
+```{r}
+ggplot(penguins, aes(x = body_mass_g)) +
+  geom_histogram(bins = 40)
+
+ggplot(penguins, aes(x = body_mass_g)) +
+  geom_density()
+```
+
+This data is right-skewed, meaning it has a longer "tail" on the right side. It may not be perfectly normally distributed because it contains multiple penguin species. We can plot the histogram using different fills and panels for each species to see if that improves things.
+
+```{r}
+ggplot(penguins, aes(x = body_mass_g, fill = species)) +
+  geom_histogram() +
+  facet_wrap(~species)
+```
+
+Within each group (species), the data seems to be normally distributed, which means it meets this assumption if we are comparing between the groups.
+
+We can also test for if the data is normal using a Shapiro-Wilk's test.
+
+```{r}
+shapiro.test(penguins$body_mass_g)
+```
+
+This is a hypothesis test. The null hypothesis is that the data is normally distributed, and the alternative hypothesis is that the data is not normally distributed. Because the p-value is less than 0.05, we have enough evidence to infer that the `body_mass_g` variable is not normally distributed. 
+
+However, we can also apply this test to one class, for example the Chinstrap species of penguin.
+
+```{r}
+shapiro.test(penguins$body_mass_g[penguins$species=="Chinstrap"])
+```
+
+Because the p-value is greater than 0.05, we have no reason to believe that the distribution of body mass for this species of penguin is not normally distributed.
+
+## Homogeneity of Variance
+
+Homogeniety of variance means the variance of each group is the same.
+
+We can visualize this using a boxplot or violin plot.
+
+```{r}
+ggplot(penguins, aes(x = species, y = body_mass_g)) +
+  geom_boxplot(aes(fill = species))
+```
+
+```{r}
+ggplot(penguins, aes(x = species, y = body_mass_g)) +
+  geom_violin(aes(fill = species)) 
+```
+
+There are several tests for homogenity of variance:
+
+**Bartlett's test**: more sensitive to if the distribution of data is not normal
+
+**Levene's test**: less sensitive to non-normal data
+
+We will use Levene's test because it is generally more robust. The Levene's test is in the `car` package. It uses a formula similar to those used in linear regression. The continuous variable is to the left of the tilde (~) and the grouping variable is to the right.
+
+Fill in the formula below to test if the variance of `body_mass_g` is equal across the `species` group in the `penguins` dataset
+
+```{r, eval = TRUE}
+car::leveneTest(body_mass_g ~ species, data = penguins)
+```
+
+It is returning the results of a null hypothesis test. The null hypothesis is that all variances are equal across groups. The alternative hypothesis that we are testing is that the variances are not equal across groups. Because the p-value (`Pr(>F)`) is below 0.05, we would infer that the assumption of homogeneity of variance is violated (i.e. that the variances are different across the groups `species`).
+
+# Conducting Correlations
+
+Correlations are used to compare the strength of an association between two continuous variables. They range between -1 (perfectly negatively correlated) and +1 (perfectly positively correlated).
+
+Before applying a test of correlation, we should first visualize the data using a scatterplot. One variable is plotted on the x-axis and the other on the y-axis. Here we will compare flower sepal length and petal width from the `flowers` dataset. Fill in the code chunk below using `geom_point` from `ggplot`.
+
+```{r, eval = TRUE}
+ggplot(data = flowers, aes(x = Sepal.Length, y = Petal.Width)) +
+  geom_point()
+
+```
+
+While these two variables have a positive monotonic (moving in one direction) association, it may not necessarily be linear. A Spearman's correlation may be more appropriate for these variables.
+
+Let's explore two other variables in the dataset: sepal length and sepal width.
+
+```{r}
+ggplot(data = flowers, aes(x = Sepal.Length, y = Sepal.Width)) +
+  geom_point() 
+```
+
+This relationship looks more linear, and could be assessed via a Pearson's correlation. However, we must also verify that the data is normally distributed. We do this individually by variable.
+
+```{r}
+ggplot(data = flowers, aes(x = Sepal.Length)) +
+  geom_histogram()
+
+shapiro.test(flowers$Sepal.Length)
+```
+
+Fill in the chunk below with the same assessment for the variable `Sepal.Width`.
+
+```{r}
+shapiro.test(flowers$Sepal.Width)
+```
+
+Becuase both variables are normally distributed, we can proceed with a Pearson's correlation test.
+
+## Pearson's
+
+Both types of correlation tests use the `cor.test` function. You specify which type of test to use via the `method` argument. If you don't specify, it will use a Pearson's test by default. 
+
+```{r}
+cor.test(flowers$Sepal.Length, flowers$Sepal.Width, method = "pearson")
+```
+
+This is a null hypothesis test, where the null hypothesis is that the true correlation is equal to zero and the alternative hypothesis is that the true correlation is not equal to zero. We assess the strength of the correlation via the `cor` parameter and the statistical significance of the correlation via the `p-value`.
+
+Because the `cor` value is positive and relatively high in the range of -1 to +1, we can infer that the association between these variables is positive and moderately strong. The p-value being low further supports this and suggests that the association is statistically significantly different from no association.
+
+## Spearman's 
+
+In the data visualization above, Sepal Length and Petal Width seemed to have a non-linear relationship. They would be better assessed via a Spearman's correlation, called rho.
+
+Fill in the chunk below for the appropriate variables, ensuring you use the "spearman" `method`.
+
+```{r, eval = TRUE}
+cor.test(flowers$Sepal.Length, flowers$Sepal.Width, method = "spearman")
+```
+
+Is this association positive or negative? How strong is it? Is it statistically significative?
+
+# Comparisons between groups
+
+There are several statistical tests for comparing continuous variables (`numeric`, `integer`) between groups (`factors`). Which one to use depends on if the data is parameteric or non-parametric and on how many groups you have.
+
+![](group-tests.png)
+
+These tests will tell you whether the difference between groups is significant, but it will not calculate the effect size (or the magnitude of the difference). You can either report the means of each group, or use a post-hoc test to calculate the effect size. Today we will just focus on the means or medians. See the [effectsize](https://easystats.github.io/effectsize/) package for more info on calculating effect sizes.
+
+## Comparison between two groups
+
+### Parametric
+
+If your data is parametric (normally distributed, independent, equal variance), you can use a t-test to compare a variable between groups. Both types of t-tests for two groups (two-sample and Welch's) use the `t.test` function, but differ in their assumption of equal variance via the `var.equal` argument. Use `?t.test` to access the help file for `t.test` to see what values this argument takes. 
+
+We can apply this to test for differences in `bill_length_mm` across `sex` in the `penguins` data. This variable is normally distributed and has equal variance among groups.
+
+```{r}
+ggplot(penguins, aes(x = sex, y = bill_length_mm)) +
+  geom_jitter(width = 0.2, alpha = 0.5) +
+  geom_boxplot(fill = NA)
+```
+
+
+```{r}
+t.test(bill_length_mm ~ sex, data = penguins, var.equal = TRUE)
+```
+
+This test returns information on the alternative hypothesis that the mean bill length differs between penguin sex. It provides the mean of each group (male and female), as well as the test statistics (t, df, p-value). All of these would be reported in a manuscript.
+
+### Non-Parametric
+
+If your data is not normally distributed, you would use a Mann Whitney U (or Wilcoxon rank-sum Test), to compare measurements between two groups. This is done via the `wilcox.test` function.
+
+`bill_length_mm` does not seem to be normally distributed. We would like to compare the length of penguins' bills across islands. However, because the dataset has three islands, to perform this example we will need to subset the data to only two islands, Biscoe and Dream, because a Mann Whitney U test can only compare two groups.
+
+```{r}
+ggplot(data = penguins, 
+       aes(x = island, y = bill_length_mm)) +
+    geom_jitter(width = 0.2, alpha = 0.5) +
+    geom_boxplot(fill = NA)
+
+ggplot(data = penguins, aes(x = bill_length_mm)) +
+  geom_histogram() +
+  facet_wrap(~island)
+
+wilcox.test(bill_length_mm~island, data = penguins,
+            subset = island %in% c("Biscoe", "Dream"))
+```
+
+As we may have predicted from the boxplot, the variable `bill_length_mm` does not differ between the two islands.
+
+This test does not report a summary statistic for each group, but we can calculate it ourselves using a combination of `group_by` and `summarise` function from `dplyr`:
+
+```{r}
+penguins |>
+  group_by(island) |>
+  summarise(median = median(bill_length_mm),
+            #estimate IQR range too
+            low_IQR = quantile(bill_length_mm, 0.25),
+            upp_IQR = quantile(bill_length_mm, 0.75))
+```
+
+
+## Comparison between more than 2 groups
+
+### Parametric
+
+An ANOVA (Analysis of Variance) Test is used to compare the means between 3 or more groups if the data is parametric. It uses the function `aov`. The test is provided using the formula format with a tilde (~). Use `?aov` to see how to apply an ANOVA to explore if `body_mass_g` differs across `species` in the penguin dataset. The output of `aov` is not very informative, so it is better to save as an object and use `summary`.
+
+Fill in the chunk below to run the ANOVA test.
+
+```{r, eval = TRUE}
+anova_test <- aov(body_mass_g~species, data = penguins)
+
+summary(anova_test)
+```
+
+In this output, we are particularly concerned with a couple of values. `Df` is the degrees of freedom, equal to the number of groups (k) - 1. `Pr(>F)` is the p-value, representing the probability that the difference among groups is due to chance.
+
+This gives us informatoin about whether body size differs between species, but does not tell us which species have different body sizes. For that, we need to perform a *post-hoc* or *pairwise* comparison. There are multiple types of these tests, but we will use a Bonferroni for now. Read more about the other options [here](https://www.statology.org/tukey-vs-bonferroni-vs-scheffe/).
+
+Based on our data visualization, we suspect that Gentoo penguins are significantly larger than the other two species, so will a post-hoc comparisons to compare Gentoo penguins with Adelie and Chinstrap penguins and calculate and adjusted p-value.
+
+```{r}
+pairwise.t.test(penguins$body_mass_g, penguins$species, 
+                p.adjust.method = "bonferroni")
+```
+
+Based on this, we can see that the difference between Adelie and Chinstrap penguins is not significant (p-value = 1), but the differences between Gentoo and the other two species have very low p-values, suggesting those differences are statistically significant. These pairwise differences are often illustrated on a plot using letters to denote groups with significant differences, like below:
+
+```{r}
+ggplot(penguins, aes(x = species, y = body_mass_g, color = species)) +
+  geom_jitter(alpha = 0.5, width = 0.2) +
+  geom_boxplot(fill = NA) +
+  guides(color = "none") +
+  geom_text(data = data.frame(label = c("a","a", "b"),
+                        x = levels(factor(penguins$species)),
+                        y = c(5000,5000,6450)), 
+             aes(x = x, y = y, label = label), color = "black")
+```
+
+### Non-Parametric
+
+ANOVA tests are more robust than t-tests to data with unequal variance, but still require your data to be normally distributed. If your data is not normally distributed, you can use a Krusal-Wallis test to compare the rank of values between groups (similar to the Spearman's correlation).
+
+In our dataset, the variable `flipper_length_mm` seems to not be normally distributed, especially on Biscoe island. 
+
+```{r}
+ggplot(penguins, aes(x  = flipper_length_mm)) +
+  geom_histogram()+
+  facet_wrap(~island, nrow = 3)
+```
+
+We will use a the Kruskal-Wallis test to compare the flipper lengths of penguins across the islands. The function `kruskal.test` accepts data in a formula format.
+
+Fill in the code chunk below in the format of `response ~ group`.
+
+```{r, eval = TRUE}
+kruskal.test(flipper_length_mm ~ island, data = penguins)
+```
+
+How would we interpret these results?
+
+This result confirms that the flipper lengths are different across the islands, but like the ANOVA, does not tell us which islands have significantly different flipper lengths. We will need to use a *post-hoc* comparison to estimate that. The `pairwise.wilcox.test` function performs this test, and we will need to specify the `method` we want to use for non-parametric data. We can again use the Bonferroni method.
+
+```{r}
+pairwise.wilcox.test(penguins$flipper_length_mm, penguins$island,
+                 p.adjust.method = "bonferroni")
+```
+
+This post-hoc test confirms what we saw in the plot. Flipper length is different on Biscoe island than the other two islands.
+
+# Conclusion
+
+We followed these steps to conduct basic statistical analyses of our data:
+
+1. Visualized data
+2. Verified that data followed assumptions
+3. Applied statistical tests
+4. Conducted post-hoc comparisons (for multi-group)
+
+However, you may have noticed that we visualized our data at nearly all of these steps, not just the beginning. Visualizing your data is the best way to better understand your data, ensure you are following statistical assumptions, and properly interpreting statistical tests. The best statistical technique you can learn is how to visualize your data in multiple ways and how to interpret figures, because it is used in all statistical approaches.
+
