@@ -279,8 +279,7 @@ print(p5)
 ## 'fit' these data well without knowing R0 in advance. There are many methods used to
 ## fit models to data, and while this diversity can at first be daunting - like many
 ## things, this becomes easier with experience. We've already talked a lot about different
-## model fitting techniques, and here, we'll just demonstrate one simple method that will just 
-## minimize the sum of squared errors.
+## model fitting techniques, and here, we'll just demonstrate one simple method that will ## just minimize the sum of squared errors.
 
 
 ## (16) First, wrap your discrete time model above into a function called 
@@ -421,9 +420,7 @@ print(p6)
 ## What does this tell us about the model fit?
 # more runs
 
-## Try again, this time fitting the subset of the data for which R0 = 3. How well do you do at fitting the
-## correct value here? Is it closer or not as close to your true R0 value as when you fit the subset for 
-## R0 = 2? Why might this be?
+## Try again, this time fitting the subset of the data for which R0 = 3. How well do you do at fitting the correct value here? Is it closer or not as close to your true R0 value as when you fit the subset for R0 = 2? Why might this be?
 
 
 
