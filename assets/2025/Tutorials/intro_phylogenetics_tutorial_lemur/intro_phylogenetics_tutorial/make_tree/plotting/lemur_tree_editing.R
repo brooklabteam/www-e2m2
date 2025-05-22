@@ -76,45 +76,46 @@ p2 <- p1 +
   geom_tiplab(color=colz, size=3)#
 p2
 
-# 3c. Looks like the bootstrap values never made it onto the tree, they are stored in the tree file that you imported, you just need to tell
-# ggtree to display them, easy peasy 
-p3 <- p2 + geom_text2(aes(subset = !isTip, label=label), size = 2)
-p3 # check it out
+# 3c. The p2 tree does not include the bootstrap values (measures of how confident we are about each node). The bootstrap values are all stored in the tree file that you imported, you just need to tell ggtree to display them on the tree. 
+p3 <- p2 + 
+  geom_text2(aes(subset = !isTip, label=label), size = 2)
+p3 
 
 
-# We can flip the tree around to change the shape too, first we need a version of the tree without the labels, since they will be the wrong direction
-p4 <- p + geom_nodepoint(color="lightblue", shape=16, size=5) + geom_tippoint(color="indianred1", shape=8, size=1) + geom_text2(aes(subset = !isTip, label=label))
-p4 #check it out
+# 3d. Now that we have our labels on the nodes and tips, we can modify the shape of the tree. To do this, we will make a version of the tree without labels, since they will be in the wrong direction when we flip the tree. 
+p4 <- p + 
+  geom_nodepoint(color="lightblue", shape=16, size=5) + 
+  geom_tippoint(color="indianred1", shape=8, size=1) + 
+  geom_text2(aes(subset = !isTip, label=label))
+p4 
 
-p5 <- open_tree(p4, 180) + geom_tiplab() #ggtree feature opens the tree specified tree view into a fan shape 
-# and rotates it 180 degrees, we are re-adding the labels on top of the fan shape
-p5 # check it out
+# Here, we can use a ggtree feature to open the tree. This changes the view of the tree into a fan shape and rotates it 180 degrees. If we wanted, we could add labels back onto this tree, using geom_tiplab()
+p5 <- open_tree(p4, 180)
+p5
 
-# Let's go back to our original tree and add some clade labels! Let's look at the tree again and think, what could be some clades?
-# First, we can shorten the branch length a little to see everything better, and also add a scale bar for the substitution rate
-p6 <- p3+geom_treescale(1)
-p6 # check it out
+# 3e. Our tree right now has the tips labeled, corresponding to each species of lemur (and our Homo sapien outgroup). What if we want to show patterns across the species? For example, we can add clade labels. First, we can shorten the branch length to see the tree better and add a scale bar for the substitution rate.
+p6 <- p3 + 
+  geom_treescale(1) 
+p6 
 
-# There's lepilemuridae for Lepilemur
-# Daubentoniidae for Daubentonia
-# Lemuridae: Hapalemur, Prolemur, Varecia, and Eulemor go here
-# Indriidae for Propithecus
-# Cheirogaleidae for microcebus and cheirogaleus
+# There are 5 clades that include all the lemur species in this phylogeny:
+# Lepilemuridae: Lepilemur
+# Daubentoniidae: Daubentonia
+# Lemuridae: Hapalemur, Prolemur, Varecia, and Eulemor
+# Indriidae: Propithecus
+# Cheirogaleidae: microcebus and cheirogaleus
 
-# We need to have 5 clades to put on this phylogeny, but we need the node numbers to tell ggtree what to label
+# We need to get node numbers to tell ggtree what to label. We can get the numbers that ggtree uses to identify the nodes in the following tibble (dataframe)
+x <- as_tibble(root.lemur.tree) 
+print(x,n=22)
 
-# ggtree labels the nodes with numbers, so let's get those so we know where we are rotating the tree
-x <- as_tibble(root.lemur.tree) # look at it this way, which is a table form and fairly easy to read
-print(x,n=22) # see all the rows, 22 rows gives the whole data set though
-# Here we want to use the parent category for telling ggtree what to do
-
-# Here is another way of looking at the clade numbers
+# If you want to see the labels printed on the tree, you can look at it this way 
 ggtree(root.lemur.tree) + geom_text(aes(label=node), hjust=-.3)
 
 
-#Two ways you can highlight the clades we have specified
+# There are two ways you can highlight the clades we have specified:
 
-#Method number 1
+# Method number 1
 p7 <- p6 + geom_cladelab(node=10, label="lepilemuridae", align=TRUE,  
                     offset = 0.20, textcolor='deepskyblue') +
   
@@ -129,16 +130,17 @@ p7 <- p6 + geom_cladelab(node=10, label="lepilemuridae", align=TRUE,
   
           geom_cladelab(node=c(8,9), label="cheirogaleidae", align=TRUE,  
                     offset = 0.20, textcolor='violetred')
-p7 #check it out
+p7 
 
 
-#Method number 2
+# Method number 2
 p8 <- p6 + geom_hilight(node=10, fill="deepskyblue", alpha=0.6, extend=1) +
   geom_hilight(node=11, fill="indianred1", alpha=0.6, extend=1) +
   geom_hilight(node=7, fill="mediumorchid1", alpha=0.6, extend=1) +
   geom_hilight(node=17, fill="slateblue1", alpha=0.6, extend=1) +
   geom_hilight(node=22,fill="violetred", alpha=0.6, extend=1)
-p8 #check it out
+p8
 
-#For further reading, which is a wonderful and easy resource: https://yulab-smu.top/treedata-book/index.html
+# As you can see, ggtree is a very versatile tool for visualizing your phylogenies! As you do more complex phylogenetic analysis, ggtree can be a useful way to create figures. 
+# For further reading about ggtree, a wonderful and easy resource can be found online here: https://yulab-smu.top/treedata-book/index.html
 
