@@ -1,0 +1,183 @@
+
+RAxML-NG v. 1.1.0 released on 29.11.2021 by The Exelixis Lab.
+Developed by: Alexey M. Kozlov and Alexandros Stamatakis.
+Contributors: Diego Darriba, Tomas Flouri, Benoit Morel, Sarah Lutteropp, Ben Bettisworth.
+Latest version: https://github.com/amkozlov/raxml-ng
+Questions/problems/suggestions? Please visit: https://groups.google.com/forum/#!forum/raxml
+
+System: Apple M2, 8 cores, 8 GB RAM
+
+RAxML-NG was called at 03-Mar-2024 13:26:01 as follows:
+
+/Applications/raxmlGUI.app/Contents/Resources/static/bin/raxml-ng-ARM64 --all --msa /Users/gwenddolenkettenburg/Desktop/RAxML/ranomafana_lemurs_cytochromeB_align.fas --model TIM2+I+G --prefix /Users/gwenddolenkettenburg/Desktop/RAxML/raxml/ranomafana_lemurs_cytochromeB_align --seed 177748 --outgroup Homo_sapiens_cytB --bs-metric tbe --tree rand{1} --bs-trees 100
+
+Analysis options:
+  run mode: ML tree search + bootstrapping (Transfer Bootstrap)
+  start tree(s): random (1)
+  bootstrap replicates: 100
+  outgroup taxa: Homo_sapiens_cytB
+  random seed: 177748
+  tip-inner: OFF
+  pattern compression: ON
+  per-rate scalers: OFF
+  site repeats: ON
+  branch lengths: proportional (ML estimate, algorithm: NR-FAST)
+  SIMD kernels: SSE3
+  parallelization: coarse-grained (auto), PTHREADS (auto)
+
+[00:00:00] Reading alignment from file: /Users/gwenddolenkettenburg/Desktop/RAxML/ranomafana_lemurs_cytochromeB_align.fas
+[00:00:00] Loaded alignment with 12 taxa and 1141 sites
+
+Alignment comprises 1 partitions and 439 patterns
+
+Partition 0: noname
+Model: TIM2+I+G4m
+Alignment sites / patterns: 1141 / 439
+Gaps: 0.08 %
+Invariant sites: 52.06 %
+
+
+NOTE: Binary MSA file created: /Users/gwenddolenkettenburg/Desktop/RAxML/raxml/ranomafana_lemurs_cytochromeB_align.raxml.rba
+
+Parallelization scheme autoconfig: 8 worker(s) x 1 thread(s)
+
+Parallel reduction/worker buffer size: 1 KB  / 0 KB
+
+[00:00:00] Generating 1 random starting tree(s) with 12 taxa
+[00:00:00] Data distribution: max. partitions/sites/weight per thread: 1 / 439 / 7024
+[00:00:00] Data distribution: max. searches per worker: 14
+
+Starting ML tree search with 1 distinct starting trees
+
+[00:00:01] [worker #0] ML tree search #1, logLikelihood: -6948.167722
+
+[00:00:01] ML tree search completed, best tree logLH: -6948.167722
+
+[00:00:01] Starting bootstrapping analysis with 100 replicates.
+
+[00:00:01] [worker #4] Bootstrap tree #5, logLikelihood: -6780.989475
+[00:00:01] [worker #1] Bootstrap tree #2, logLikelihood: -6601.789947
+[00:00:02] [worker #2] Bootstrap tree #3, logLikelihood: -6957.524161
+[00:00:02] [worker #5] Bootstrap tree #6, logLikelihood: -6792.440424
+[00:00:02] [worker #0] Bootstrap tree #1, logLikelihood: -6913.795577
+[00:00:02] [worker #6] Bootstrap tree #7, logLikelihood: -6835.088339
+[00:00:02] [worker #7] Bootstrap tree #8, logLikelihood: -6722.112046
+[00:00:02] [worker #3] Bootstrap tree #4, logLikelihood: -7332.465471
+[00:00:03] [worker #4] Bootstrap tree #13, logLikelihood: -7089.361718
+[00:00:03] [worker #0] Bootstrap tree #9, logLikelihood: -6954.583560
+[00:00:04] [worker #5] Bootstrap tree #14, logLikelihood: -7005.791235
+[00:00:04] [worker #1] Bootstrap tree #10, logLikelihood: -6975.582218
+[00:00:04] [worker #2] Bootstrap tree #11, logLikelihood: -7233.170190
+[00:00:04] [worker #7] Bootstrap tree #16, logLikelihood: -6898.833062
+[00:00:04] [worker #3] Bootstrap tree #12, logLikelihood: -7123.645696
+[00:00:05] [worker #6] Bootstrap tree #15, logLikelihood: -6937.959913
+[00:00:05] [worker #0] Bootstrap tree #17, logLikelihood: -6952.389636
+[00:00:05] [worker #5] Bootstrap tree #22, logLikelihood: -6775.270522
+[00:00:06] [worker #4] Bootstrap tree #21, logLikelihood: -7219.878073
+[00:00:06] [worker #1] Bootstrap tree #18, logLikelihood: -6819.555348
+[00:00:06] [worker #2] Bootstrap tree #19, logLikelihood: -6754.227155
+[00:00:06] [worker #3] Bootstrap tree #20, logLikelihood: -6724.809021
+[00:00:07] [worker #7] Bootstrap tree #24, logLikelihood: -6975.001464
+[00:00:07] [worker #6] Bootstrap tree #23, logLikelihood: -6736.554145
+[00:00:08] [worker #2] Bootstrap tree #27, logLikelihood: -6635.372590
+[00:00:08] [worker #5] Bootstrap tree #30, logLikelihood: -6992.268659
+[00:00:08] [worker #1] Bootstrap tree #26, logLikelihood: -6955.075155
+[00:00:08] [worker #0] Bootstrap tree #25, logLikelihood: -7139.275214
+[00:00:08] [worker #7] Bootstrap tree #32, logLikelihood: -6990.863569
+[00:00:09] [worker #4] Bootstrap tree #29, logLikelihood: -7042.686676
+[00:00:09] [worker #5] Bootstrap tree #38, logLikelihood: -6698.375956
+[00:00:10] [worker #6] Bootstrap tree #31, logLikelihood: -6872.021386
+[00:00:10] [worker #3] Bootstrap tree #28, logLikelihood: -6898.064171
+[00:00:10] [worker #1] Bootstrap tree #34, logLikelihood: -6840.870469
+[00:00:10] [worker #2] Bootstrap tree #35, logLikelihood: -7062.804289
+[00:00:11] [worker #0] Bootstrap tree #33, logLikelihood: -7010.236553
+[00:00:11] [worker #7] Bootstrap tree #40, logLikelihood: -7183.748648
+[00:00:12] [worker #4] Bootstrap tree #37, logLikelihood: -6834.548415
+[00:00:13] [worker #2] Bootstrap tree #43, logLikelihood: -6989.368730
+[00:00:13] [worker #3] Bootstrap tree #36, logLikelihood: -6795.516534
+[00:00:13] [worker #5] Bootstrap tree #46, logLikelihood: -6831.924256
+[00:00:14] [worker #6] Bootstrap tree #39, logLikelihood: -7038.956985
+[00:00:14] [worker #1] Bootstrap tree #42, logLikelihood: -6987.500340
+[00:00:15] [worker #0] Bootstrap tree #41, logLikelihood: -6822.718714
+[00:00:15] [worker #7] Bootstrap tree #48, logLikelihood: -6692.293522
+[00:00:17] [worker #1] Bootstrap tree #50, logLikelihood: -6834.066840
+[00:00:17] [worker #4] Bootstrap tree #45, logLikelihood: -6852.683511
+[00:00:17] [worker #6] Bootstrap tree #47, logLikelihood: -7289.070033
+[00:00:18] [worker #3] Bootstrap tree #44, logLikelihood: -6853.017058
+[00:00:18] [worker #0] Bootstrap tree #49, logLikelihood: -7158.019329
+[00:00:20] [worker #1] Bootstrap tree #58, logLikelihood: -7302.847682
+[00:00:20] [worker #5] Bootstrap tree #54, logLikelihood: -6920.695515
+[00:00:20] [worker #4] Bootstrap tree #53, logLikelihood: -7112.793828
+[00:00:20] [worker #3] Bootstrap tree #52, logLikelihood: -7046.428223
+[00:00:20] [worker #2] Bootstrap tree #51, logLikelihood: -7105.050518
+[00:00:20] [worker #7] Bootstrap tree #56, logLikelihood: -6970.503819
+[00:00:20] [worker #0] Bootstrap tree #57, logLikelihood: -6612.641406
+[00:00:22] [worker #4] Bootstrap tree #61, logLikelihood: -6883.434343
+[00:00:22] [worker #6] Bootstrap tree #55, logLikelihood: -6596.666369
+[00:00:22] [worker #2] Bootstrap tree #59, logLikelihood: -7010.802589
+[00:00:22] [worker #7] Bootstrap tree #64, logLikelihood: -6821.789935
+[00:00:23] [worker #0] Bootstrap tree #65, logLikelihood: -6705.593972
+[00:00:23] [worker #5] Bootstrap tree #62, logLikelihood: -6889.452767
+[00:00:23] [worker #3] Bootstrap tree #60, logLikelihood: -7230.860787
+[00:00:25] [worker #1] Bootstrap tree #66, logLikelihood: -6842.841249
+[00:00:25] [worker #6] Bootstrap tree #63, logLikelihood: -6799.562739
+[00:00:25] [worker #2] Bootstrap tree #67, logLikelihood: -6990.678702
+[00:00:26] [worker #7] Bootstrap tree #72, logLikelihood: -6950.817966
+[00:00:26] [worker #3] Bootstrap tree #68, logLikelihood: -6639.654011
+[00:00:26] [worker #0] Bootstrap tree #73, logLikelihood: -6924.102203
+[00:00:26] [worker #4] Bootstrap tree #69, logLikelihood: -6920.861079
+[00:00:27] [worker #5] Bootstrap tree #70, logLikelihood: -7115.939182
+[00:00:27] [worker #6] Bootstrap tree #71, logLikelihood: -6760.344872
+[00:00:27] [worker #7] Bootstrap tree #80, logLikelihood: -6704.137405
+[00:00:28] [worker #2] Bootstrap tree #75, logLikelihood: -6432.168472
+[00:00:28] [worker #3] Bootstrap tree #76, logLikelihood: -6848.979404
+[00:00:28] [worker #1] Bootstrap tree #74, logLikelihood: -7069.398896
+[00:00:29] [worker #4] Bootstrap tree #77, logLikelihood: -6854.628284
+[00:00:29] [worker #0] Bootstrap tree #81, logLikelihood: -6710.208710
+[00:00:29] [worker #5] Bootstrap tree #78, logLikelihood: -6857.959131
+[00:00:30] [worker #2] Bootstrap tree #83, logLikelihood: -7066.664735
+[00:00:30] [worker #3] Bootstrap tree #84, logLikelihood: -6936.510528
+[00:00:30] [worker #6] Bootstrap tree #79, logLikelihood: -6908.190891
+[00:00:30] [worker #7] Bootstrap tree #88, logLikelihood: -7000.902530
+[00:00:31] [worker #1] Bootstrap tree #82, logLikelihood: -7061.842615
+[00:00:31] [worker #2] Bootstrap tree #91, logLikelihood: -6925.612078
+[00:00:31] [worker #0] Bootstrap tree #89, logLikelihood: -6814.797146
+[00:00:32] [worker #4] Bootstrap tree #85, logLikelihood: -6749.485141
+[00:00:32] [worker #5] Bootstrap tree #86, logLikelihood: -7028.350209
+[00:00:32] [worker #6] Bootstrap tree #87, logLikelihood: -6723.283859
+[00:00:33] [worker #7] Bootstrap tree #96, logLikelihood: -7120.134623
+[00:00:33] [worker #3] Bootstrap tree #92, logLikelihood: -7105.930787
+[00:00:33] [worker #1] Bootstrap tree #90, logLikelihood: -6996.894908
+[00:00:34] [worker #2] Bootstrap tree #99, logLikelihood: -6915.667655
+[00:00:34] [worker #4] Bootstrap tree #93, logLikelihood: -7064.498465
+[00:00:34] [worker #0] Bootstrap tree #97, logLikelihood: -7070.049511
+[00:00:34] [worker #5] Bootstrap tree #94, logLikelihood: -6987.559755
+[00:00:34] [worker #6] Bootstrap tree #95, logLikelihood: -7072.006819
+[00:00:35] [worker #3] Bootstrap tree #100, logLikelihood: -6671.748366
+[00:00:35] [worker #1] Bootstrap tree #98, logLikelihood: -7084.714830
+
+Optimized model parameters:
+
+   Partition 0: noname
+   Rate heterogeneity: GAMMA (4 cats, mean),  alpha: 0.923623 (ML),  weights&rates: (0.250000,0.121474) (0.250000,0.452526) (0.250000,0.986094) (0.250000,2.439906) 
+   P-inv (ML): 0.372910
+   Base frequencies (model): 0.250000 0.250000 0.250000 0.250000 
+   Substitution rates (ML): 22.761092 32.634117 22.761092 1.000000 218.474858 1.000000 
+
+
+Final LogLikelihood: -6948.167722
+
+AIC score: 13948.335444 / AICc score: 13949.595767 / BIC score: 14079.366613
+Free parameters (model + branch lengths): 26
+
+Best ML tree saved to: /Users/gwenddolenkettenburg/Desktop/RAxML/raxml/ranomafana_lemurs_cytochromeB_align.raxml.bestTree
+Best ML tree with Transfer bootstrap (TBE) support values saved to: /Users/gwenddolenkettenburg/Desktop/RAxML/raxml/ranomafana_lemurs_cytochromeB_align.raxml.support
+Optimized model saved to: /Users/gwenddolenkettenburg/Desktop/RAxML/raxml/ranomafana_lemurs_cytochromeB_align.raxml.bestModel
+Bootstrap trees saved to: /Users/gwenddolenkettenburg/Desktop/RAxML/raxml/ranomafana_lemurs_cytochromeB_align.raxml.bootstraps
+
+Execution log saved to: /Users/gwenddolenkettenburg/Desktop/RAxML/raxml/ranomafana_lemurs_cytochromeB_align.raxml.log
+
+Analysis started: 03-Mar-2024 13:26:01 / finished: 03-Mar-2024 13:26:37
+
+Elapsed time: 35.807 seconds
+

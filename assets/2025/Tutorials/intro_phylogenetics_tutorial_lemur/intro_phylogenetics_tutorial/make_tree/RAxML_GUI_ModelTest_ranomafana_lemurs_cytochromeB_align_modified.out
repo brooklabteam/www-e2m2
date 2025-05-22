@@ -1,0 +1,180 @@
+--------------------------------------------------------------------------------
+ModelTest-NG v0.1.7
+
+Input data:
+  MSA:        C:\Users\sophi\Documents\GitHub\www-e2m2\assets\2025\Tutorials\intro_phylogenetics_tutorial_lemur\intro_phylogenetics_tutorial\make_tree\ranomafana_lemurs_cytochromeB_align_modified.fas
+  Tree:       Maximum parsimony
+    file:           -
+  #taxa:            12
+  #sites:           1140
+  #patterns:        438
+  Max. thread mem:  2 MB
+
+Output:
+  Log:           C:\Users\sophi\Documents\GitHub\www-e2m2\assets\2025\Tutorials\intro_phylogenetics_tutorial_lemur\intro_phylogenetics_tutorial\make_tree\RAxML_GUI_ModelTest_ranomafana_lemurs_cytochromeB_align_modified.log
+  Starting tree: C:\Users\sophi\Documents\GitHub\www-e2m2\assets\2025\Tutorials\intro_phylogenetics_tutorial_lemur\intro_phylogenetics_tutorial\make_tree\RAxML_GUI_ModelTest_ranomafana_lemurs_cytochromeB_align_modified.tree
+  Results:       C:\Users\sophi\Documents\GitHub\www-e2m2\assets\2025\Tutorials\intro_phylogenetics_tutorial_lemur\intro_phylogenetics_tutorial\make_tree\RAxML_GUI_ModelTest_ranomafana_lemurs_cytochromeB_align_modified.out
+
+Selection options:
+  # dna schemes:      11
+  # dna models:       88
+  include model parameters:
+    Uniform:         true
+    p-inv (+I):      true
+    gamma (+G):      true
+    both (+I+G):     true
+    free rates (+R): false
+    fixed freqs:     true
+    estimated freqs: true
+    #categories:     4
+  gamma rates mode:   mean
+  asc bias:           none
+  epsilon (opt):      0.01
+  epsilon (par):      0.05
+  keep branches:      false
+
+Additional options:
+  verbosity:        very low
+  threads:          2/4
+  RNG seed:         12345
+  subtree repeats:  enabled
+--------------------------------------------------------------------------------
+
+BIC       model              K            lnL          score          delta    weight
+--------------------------------------------------------------------------------
+       1  TIM2+I+G4          8     -6850.9488     13906.0223         0.0000    0.9989
+       2  GTR+I+G4          10     -6850.7425     13919.6873        13.6649    0.0011
+       3  TIM2+G4            7     -6865.6674     13928.4207        22.3984    0.0000
+       4  TrN+I+G4           7     -6866.4736     13930.0331        24.0108    0.0000
+       5  TIM3+I+G4          8     -6865.8197     13935.7641        29.7418    0.0000
+       6  TIM1+I+G4          8     -6866.1740     13936.4727        30.4504    0.0000
+       7  GTR+G4             9     -6865.7571     13942.6778        36.6555    0.0000
+       8  TPM2uf+I+G4        7     -6873.5189     13944.1238        38.1015    0.0000
+       9  HKY+I+G4           6     -6878.2899     13946.6270        40.6047    0.0000
+      10  TrN+G4             6     -6879.6636     13949.3744        43.3521    0.0000
+--------------------------------------------------------------------------------
+Best model according to BIC
+---------------------------
+Model:              TIM2+I+G4
+lnL:                -6850.9488
+Frequencies:        0.3080 0.3411 0.1150 0.2359
+Subst. Rates:       6.4654 24.7614 6.4654 1.0000 98.3155 1.0000 
+Inv. sites prop:    0.3864
+Gamma shape:        0.7387
+Score:              13906.0223
+Weight:             0.9989
+---------------------------
+Parameter importances
+---------------------------
+P.Inv:              0.0000
+Gamma:              0.0000
+Gamma-Inv:          1.0000
+Frequencies:        1.0000
+---------------------------
+Model averaged estimates
+---------------------------
+P.Inv:              0.4955
+Alpha:              0.2558
+Alpha-P.Inv:        0.7386
+P.Inv-Alpha:        0.3864
+Frequencies:        0.3080 0.3411 0.1150 0.2359 
+
+Commands:
+  > phyml  -i C:\Users\sophi\Documents\GitHub\www-e2m2\assets\2025\Tutorials\intro_phylogenetics_tutorial_lemur\intro_phylogenetics_tutorial\make_tree\ranomafana_lemurs_cytochromeB_align_modified.fas -m 010232 -f m -v e -a e -c 4 -o tlr
+  > raxmlHPC-SSE3 -s C:\Users\sophi\Documents\GitHub\www-e2m2\assets\2025\Tutorials\intro_phylogenetics_tutorial_lemur\intro_phylogenetics_tutorial\make_tree\ranomafana_lemurs_cytochromeB_align_modified.fas -m GTRGAMMAIX -n EXEC_NAME -p PARSIMONY_SEED
+  > raxml-ng --msa C:\Users\sophi\Documents\GitHub\www-e2m2\assets\2025\Tutorials\intro_phylogenetics_tutorial_lemur\intro_phylogenetics_tutorial\make_tree\ranomafana_lemurs_cytochromeB_align_modified.fas --model TIM2+I+G4
+  > paup -s C:\Users\sophi\Documents\GitHub\www-e2m2\assets\2025\Tutorials\intro_phylogenetics_tutorial_lemur\intro_phylogenetics_tutorial\make_tree\ranomafana_lemurs_cytochromeB_align_modified.fas
+  > iqtree -s C:\Users\sophi\Documents\GitHub\www-e2m2\assets\2025\Tutorials\intro_phylogenetics_tutorial_lemur\intro_phylogenetics_tutorial\make_tree\ranomafana_lemurs_cytochromeB_align_modified.fas -m TIM2+I+G4
+
+AIC       model              K            lnL          score          delta    weight
+--------------------------------------------------------------------------------
+       1  TIM2+I+G4          8     -6850.9488     13759.8976         0.0000    0.8574
+       2  GTR+I+G4          10     -6850.7425     13763.4850         3.5874    0.1426
+       3  TIM2+G4            7     -6865.6674     13787.3348        27.4372    0.0000
+       4  TrN+I+G4           7     -6866.4736     13788.9472        29.0496    0.0000
+       5  TIM3+I+G4          8     -6865.8197     13789.6394        29.7418    0.0000
+       6  TIM1+I+G4          8     -6866.1740     13790.3480        30.4504    0.0000
+       7  GTR+G4             9     -6865.7571     13791.5143        31.6167    0.0000
+       8  TPM2uf+I+G4        7     -6873.5189     13803.0378        43.1402    0.0000
+       9  TVM+I+G4           9     -6873.8574     13807.7147        47.8171    0.0000
+      10  HKY+I+G4           6     -6878.2899     13810.5799        50.6823    0.0000
+--------------------------------------------------------------------------------
+Best model according to AIC
+---------------------------
+Model:              TIM2+I+G4
+lnL:                -6850.9488
+Frequencies:        0.3080 0.3411 0.1150 0.2359
+Subst. Rates:       6.4654 24.7614 6.4654 1.0000 98.3155 1.0000 
+Inv. sites prop:    0.3864
+Gamma shape:        0.7387
+Score:              13759.8976
+Weight:             0.8574
+---------------------------
+Parameter importances
+---------------------------
+P.Inv:              0.0000
+Gamma:              0.0000
+Gamma-Inv:          1.0000
+Frequencies:        1.0000
+---------------------------
+Model averaged estimates
+---------------------------
+P.Inv:              0.4946
+Alpha:              0.2559
+Alpha-P.Inv:        0.7333
+P.Inv-Alpha:        0.3862
+Frequencies:        0.3082 0.3413 0.1149 0.2356 
+
+Commands:
+  > phyml  -i C:\Users\sophi\Documents\GitHub\www-e2m2\assets\2025\Tutorials\intro_phylogenetics_tutorial_lemur\intro_phylogenetics_tutorial\make_tree\ranomafana_lemurs_cytochromeB_align_modified.fas -m 010232 -f m -v e -a e -c 4 -o tlr
+  > raxmlHPC-SSE3 -s C:\Users\sophi\Documents\GitHub\www-e2m2\assets\2025\Tutorials\intro_phylogenetics_tutorial_lemur\intro_phylogenetics_tutorial\make_tree\ranomafana_lemurs_cytochromeB_align_modified.fas -m GTRGAMMAIX -n EXEC_NAME -p PARSIMONY_SEED
+  > raxml-ng --msa C:\Users\sophi\Documents\GitHub\www-e2m2\assets\2025\Tutorials\intro_phylogenetics_tutorial_lemur\intro_phylogenetics_tutorial\make_tree\ranomafana_lemurs_cytochromeB_align_modified.fas --model TIM2+I+G4
+  > paup -s C:\Users\sophi\Documents\GitHub\www-e2m2\assets\2025\Tutorials\intro_phylogenetics_tutorial_lemur\intro_phylogenetics_tutorial\make_tree\ranomafana_lemurs_cytochromeB_align_modified.fas
+  > iqtree -s C:\Users\sophi\Documents\GitHub\www-e2m2\assets\2025\Tutorials\intro_phylogenetics_tutorial_lemur\intro_phylogenetics_tutorial\make_tree\ranomafana_lemurs_cytochromeB_align_modified.fas -m TIM2+I+G4
+
+AICc      model              K            lnL          score          delta    weight
+--------------------------------------------------------------------------------
+       1  TIM2+I+G4          8     -6850.9488     13760.8976         0.0000    0.8574
+       2  GTR+I+G4          10     -6850.7425     13764.4850         3.5874    0.1426
+       3  TIM2+G4            7     -6865.6674     13788.3348        27.4372    0.0000
+       4  TrN+I+G4           7     -6866.4736     13789.9472        29.0496    0.0000
+       5  TIM3+I+G4          8     -6865.8197     13790.6394        29.7418    0.0000
+       6  TIM1+I+G4          8     -6866.1740     13791.3480        30.4504    0.0000
+       7  GTR+G4             9     -6865.7571     13792.5143        31.6167    0.0000
+       8  TPM2uf+I+G4        7     -6873.5189     13804.0378        43.1402    0.0000
+       9  TVM+I+G4           9     -6873.8574     13808.7147        47.8171    0.0000
+      10  HKY+I+G4           6     -6878.2899     13811.5799        50.6823    0.0000
+--------------------------------------------------------------------------------
+Best model according to AICc
+---------------------------
+Model:              TIM2+I+G4
+lnL:                -6850.9488
+Frequencies:        0.3080 0.3411 0.1150 0.2359
+Subst. Rates:       6.4654 24.7614 6.4654 1.0000 98.3155 1.0000 
+Inv. sites prop:    0.3864
+Gamma shape:        0.7387
+Score:              13760.8976
+Weight:             0.8574
+---------------------------
+Parameter importances
+---------------------------
+P.Inv:              0.0000
+Gamma:              0.0000
+Gamma-Inv:          1.0000
+Frequencies:        1.0000
+---------------------------
+Model averaged estimates
+---------------------------
+P.Inv:              0.4946
+Alpha:              0.2559
+Alpha-P.Inv:        0.7333
+P.Inv-Alpha:        0.3862
+Frequencies:        0.3082 0.3413 0.1149 0.2356 
+
+Commands:
+  > phyml  -i C:\Users\sophi\Documents\GitHub\www-e2m2\assets\2025\Tutorials\intro_phylogenetics_tutorial_lemur\intro_phylogenetics_tutorial\make_tree\ranomafana_lemurs_cytochromeB_align_modified.fas -m 010232 -f m -v e -a e -c 4 -o tlr
+  > raxmlHPC-SSE3 -s C:\Users\sophi\Documents\GitHub\www-e2m2\assets\2025\Tutorials\intro_phylogenetics_tutorial_lemur\intro_phylogenetics_tutorial\make_tree\ranomafana_lemurs_cytochromeB_align_modified.fas -m GTRGAMMAIX -n EXEC_NAME -p PARSIMONY_SEED
+  > raxml-ng --msa C:\Users\sophi\Documents\GitHub\www-e2m2\assets\2025\Tutorials\intro_phylogenetics_tutorial_lemur\intro_phylogenetics_tutorial\make_tree\ranomafana_lemurs_cytochromeB_align_modified.fas --model TIM2+I+G4
+  > paup -s C:\Users\sophi\Documents\GitHub\www-e2m2\assets\2025\Tutorials\intro_phylogenetics_tutorial_lemur\intro_phylogenetics_tutorial\make_tree\ranomafana_lemurs_cytochromeB_align_modified.fas
+  > iqtree -s C:\Users\sophi\Documents\GitHub\www-e2m2\assets\2025\Tutorials\intro_phylogenetics_tutorial_lemur\intro_phylogenetics_tutorial\make_tree\ranomafana_lemurs_cytochromeB_align_modified.fas -m TIM2+I+G4
+Done

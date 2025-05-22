@@ -1,0 +1,6 @@
+The analysis was run using raxmlGUI 2.0 (version 2.0.10) as follows:
+Analysis: ML + transfer bootstrap expectation + consensus
+Binary: raxml-ng-ARM64 version 1.1.0
+Results saved to: /Users/gwenddolenkettenburg/Desktop/RAxML/raxml
+RAxML was called with these arguments:
+1.) --all --msa /Users/gwenddolenkettenburg/Desktop/RAxML/ranomafana_lemurs_cytochromeB_align.fas --model TIM2+I+G --prefix /Users/gwenddolenkettenburg/Desktop/RAxML/raxml/ranomafana_lemurs_cytochromeB_align --seed 177748 --outgroup Homo_sapiens_cytB --bs-metric tbe --tree rand{1} --bs-trees 100
