@@ -78,7 +78,7 @@ p2
 
 # 3c. The p2 tree does not include the bootstrap values (measures of how confident we are about each node). The bootstrap values are all stored in the tree file that you imported, you just need to tell ggtree to display them on the tree. 
 p3 <- p2 + 
-  geom_text2(aes(subset = !isTip, label=label), size = 2)
+  geom_text2(aes(subset = !isTip, label=label), size = 4)
 p3 
 
 

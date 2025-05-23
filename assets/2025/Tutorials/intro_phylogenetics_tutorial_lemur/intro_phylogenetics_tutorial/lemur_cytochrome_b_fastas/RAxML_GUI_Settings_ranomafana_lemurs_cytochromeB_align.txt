@@ -1,0 +1,6 @@
+The analysis was run using raxmlGUI 2.0 (version 2.0.13) as follows:
+Analysis: ML + rapid bootstrap
+Binary: raxmlHPC-PTHREADS-SSE3.exe version 8.2.12
+Results saved to: C:\Users\sophi\Documents\GitHub\www-e2m2\assets\2025\Tutorials\intro_phylogenetics_tutorial_lemur\intro_phylogenetics_tutorial\lemur_cytochrome_b_fastas
+RAxML was called with these arguments:
+1.) -T 2 -f a -x 435917 -p 435917 -N 100 -m GTRGAMMAIX -O -o Homo_sapiens_cytB -n ranomafana_lemurs_cytochromeB_align.tre -s "C:\Users\sophi\Documents\GitHub\www-e2m2\assets\2025\Tutorials\intro_phylogenetics_tutorial_lemur\intro_phylogenetics_tutorial\lemur_cytochrome_b_fastas\ranomafana_lemurs_cytochromeB_align_modified.fas" -w "C:\Users\sophi\Documents\GitHub\www-e2m2\assets\2025\Tutorials\intro_phylogenetics_tutorial_lemur\intro_phylogenetics_tutorial\lemur_cytochrome_b_fastas"
