@@ -10,13 +10,13 @@ title: "E2M2: Ecological & Epidemiological Modeling in Madagascar"
 <!--🛑 
 -->
 
-<strong> We are pleased to announce the seventh annual E<sup>2</sup>M<sup>2</sup> will be held May 18-26, 2025! Applications for E2M2 2025 are now closed. </strong> 
+<strong> Thanks to everyone who joined for E<sup>2</sup>M<sup>2</sup> in Andasibe! When available, information about future versions of the course will be updated here. </strong> 
 
 </div>
 
 ---
 
-<img src="/assets/img/E2M2-2024.jpeg" alt="E2M2class" style="width: 70%;" />
+<img src="/assets/img/E2M2-2025.jpeg" alt="E2M2class" style="width: 70%;" />
 
 <!---
 We are pleased to announce the sixth annual E<sup>2</sup>M<sup>2</sup>:  Ecological and Epidemiological Modeling in Madagascar. The course will consist of a week-long intensive workshop aimed to provide an introduction to the use of dynamical models in understanding ecological and epidemiological data, followed by a final symposium where students will have a chance to present original research.
@@ -55,7 +55,7 @@ Please do not hesitate to contact Cara Brook ([cbrook@uchicago.edu](mailto:cbroo
 
 ---
 
- The 2025 syllabus is in progress. Materials from previous years' courses can be accessed at [E<sup>2</sup>M<sup>2</sup> 2024](/archives/2024), [E<sup>2</sup>M<sup>2</sup> 2022](/archives/2022), [E<sup>2</sup>M<sup>2</sup> 2020](/archives/2020), [E<sup>2</sup>M<sup>2</sup> 2019](/archives/2019) and [E<sup>2</sup>M<sup>2</sup> 2018](/archives/2018).
+Materials from previous years' courses can be accessed at [E<sup>2</sup>M<sup>2</sup> 2025](/archives/2025), [E<sup>2</sup>M<sup>2</sup> 2024](/archives/2024), [E<sup>2</sup>M<sup>2</sup> 2022](/archives/2022), [E<sup>2</sup>M<sup>2</sup> 2020](/archives/2020), [E<sup>2</sup>M<sup>2</sup> 2019](/archives/2019) and [E<sup>2</sup>M<sup>2</sup> 2018](/archives/2018).
 
 ---
 
