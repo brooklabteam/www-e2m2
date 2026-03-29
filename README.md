@@ -2,7 +2,7 @@
 
 ### Basics
 
-**www-e2m2** is a [Jekyll](https://jekyllrb.com/)-generated static site. The published site is deployed using [Netlify](https://netlify.com) with a domain registered via [Squarespace](https://domains.squarespace.com).
+**www-e2m2** is a [Jekyll](https://jekyllrb.com/)-generated static site. The published site is deployed using [Netlify](https://netlify.com) with a domain registered via [Cloudflare](https://www.cloudflare.com).
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/6115606f-755e-4d93-8662-a7bb0d56d742/deploy-status)](https://app.netlify.com/sites/e2m2/deploys)
 
