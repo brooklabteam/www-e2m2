@@ -1,9 +1,5 @@
 # netlify redirects https://docs.netlify com/routing/redirects/#syntax-for-the-redirects-file
 
-# Plausible Analytics based on https://plausible.io/docs/proxy/guides/vercel
-/pio/js/pa-rTzaw5wJN_ifMPAUO8-Le.js https://plausible.io/js/pa-rTzaw5wJN_ifMPAUO8-Le.js 200
-/pio/api/event https://plausible.io/api/event 200
-
 /archives / # no actual `/archives` path just send people to home page for now
 /2022 /archives/2022
 
