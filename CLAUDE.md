@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is the [E2M2](https://e2m2.org) website — a Jekyll static site deployed via Netlify, built on the same base structure as the [Brook Lab website](https://brooklab.org).
+This is the [E2M2](https://e2m2.org) website — a Jekyll static site deployed via Cloudflare Pages, built on the same base structure as the [Brook Lab website](https://brooklab.org).
 
 Refer to the [brooklabteam/www CLAUDE.md](https://github.com/brooklabteam/www/blob/main/CLAUDE.md) for shared documentation on:
 - Local development setup
