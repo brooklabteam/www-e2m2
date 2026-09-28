@@ -29,3 +29,7 @@
   - present year
 - Preparation
 - Syllabus
+
+### Repo TODOs
+
+- **`assets/2025/Tutorials/intro_phylogenetics_tutorial/` vs `intro_phylogenetics_tutorial_lemur/`**: these two directories overlap heavily and look like duplicates of the same phylogenetics tutorial. `intro_phylogenetics_tutorial/` also contains an extra self-nested `intro_phylogenetics_tutorial/intro_phylogenetics_tutorial/` copy (a leftover unzip artifact), while `intro_phylogenetics_tutorial_lemur/` appears to be the more complete version (it has the finished RAxML tree output files the other is missing). Needs a decision on which is canonical, then: collapse to one directory, remove the redundant nesting, and update any page that links to it.
