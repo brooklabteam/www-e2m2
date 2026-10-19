@@ -10,8 +10,8 @@ title: "E2M2: Ecological & Epidemiological Modeling in Madagascar"
 <!--🛑 
 -->
 
-<strong> Apply now for E<sup>2</sup>M<sup>2</sup> 2027! 
-Applications due by midnight November 30th, 2026: href= "https://forms.gle/zXeboeYFAS3q2rYg7"
+<strong> Applications open now for E<sup>2</sup>M<sup>2</sup> 2027! 
+Applications due <a href="https://forms.gle/zXeboeYFAS3q2rYg7">here</a> by midnight November 30th, 2026.
 </strong> 
 
 </div>
