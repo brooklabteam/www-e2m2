@@ -9,9 +9,10 @@ title: "E2M2: Ecological & Epidemiological Modeling in Madagascar"
 <div class="bs-callout bs-callout-warning">
 <!--🛑 
 -->
-<!--
-<strong> Thanks to everyone who joined for E<sup>2</sup>M<sup>2</sup> in Andasibe! When available, information about future versions of the course will be updated here. </strong> 
--->
+
+<strong> Apply now for E<sup>2</sup>M<sup>2</sup>! Applications due by midnight November 30th, 2026: https://forms.gle/zXeboeYFAS3q2rYg7 
+</strong> 
+
 </div>
 
 ---
