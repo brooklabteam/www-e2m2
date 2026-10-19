@@ -9,18 +9,17 @@ title: "E2M2: Ecological & Epidemiological Modeling in Madagascar"
 <div class="bs-callout bs-callout-warning">
 <!--🛑 
 -->
-
+<!--
 <strong> Thanks to everyone who joined for E<sup>2</sup>M<sup>2</sup> in Andasibe! When available, information about future versions of the course will be updated here. </strong> 
-
+-->
 </div>
 
 ---
 
-<img src="/assets/img/E2M2-2024.jpeg" alt="E2M2class" style="width: 70%;" />
+<img src="/assets/img/E2M2-2025.jpeg" alt="E2M2class" style="width: 70%;" />
 
-<!---
-We are pleased to announce the sixth annual E<sup>2</sup>M<sup>2</sup>:  Ecological and Epidemiological Modeling in Madagascar. The course will consist of a week-long intensive workshop aimed to provide an introduction to the use of dynamical models in understanding ecological and epidemiological data, followed by a final symposium where students will have a chance to present original research.
--->
+We are pleased to announce the seventh annual E<sup>2</sup>M<sup>2</sup>:  Ecological and Epidemiological Modeling in Madagascar. The course will consist of a week-long intensive workshop aimed to provide an introduction to the use of dynamical models in understanding ecological and epidemiological data, followed by a final symposium where students will have a chance to present original research.
+
 
 
 Throughout E<sup>2</sup>M<sup>2</sup>, students will participate in a series of interactive lectures and computer-based tutorials and learn to fine-tune model-based research questions, develop clear model frameworks and corresponding equations, and fit models to real-world data. All students will work closely with peers and faculty to develop a research plan for an ongoing or existing project integrating dynamical modeling with data collection and/or analysis in a biological system of their choosing. These research plans can then be used as a foundation for future dissertation or grant proposals. 
@@ -29,9 +28,9 @@ The course will be targeted towards students in their third cycle or higher in b
 
 
 ---
-<!--
-<a href="https://airtable.com/appOmknn85Pk2TFON/shrVqROd5NL0d87Io">Apply here.</a>
-Applications due by midnight November 30th.
+
+<a href="https://forms.gle/zXeboeYFAS3q2rYg7">Apply here.</a>
+Applications due by midnight November 30th, 2026.
 
 
 <div class="bs-callout bs-callout-info">
@@ -48,7 +47,7 @@ Applications due by midnight November 30th.
 	</li>
 </ul>
 </div>
--->
+
 
 Please do not hesitate to contact Cara Brook ([cbrook@uchicago.edu](mailto:cbrook@uchicago.edu)) or Christian Ranaivoson ([hcranaivoson@uchicago.edu](mailto:hcranaivoson@uchicago.edu)) with any questions or concerns. 
 
@@ -60,6 +59,6 @@ Materials from previous years' courses can be accessed at [E<sup>2</sup>M<sup>2<
 ---
 
 
-Misaotra betsaka from the 2025 E<sup>2</sup>M<sup>2</sup> organizing team!
+Misaotra betsaka from the 2026 E<sup>2</sup>M<sup>2</sup> organizing team!
 
 <em>Cara Brook, Hafaliana Christian Ranaivoson, Angelo Andrianiaina, Santino Andry, Gwen Kettenburg, Emily Ruhs, Natalia Cortes Delgado, Sophie Lockwood  </em>
