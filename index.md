@@ -51,7 +51,7 @@ Applications due by midnight November 30th, 2026.
 </div>
 
 
-Please do not hesitate to contact Cara Brook ([cbrook@uchicago.edu](mailto:cbrook@uchicago.edu)) or Christian Ranaivoson ([hcranaivoson@uchicago.edu](mailto:hcranaivoson@uchicago.edu)) with any questions or concerns. 
+Please do not hesitate to contact Cara Brook ([cbrook@berkeley.edu](mailto:cbrook@berkeley.edu)) or Christian Ranaivoson ([hafalianachris@berkeley.edu](mailto:hafalianachris@berkeley.edu)) with any questions or concerns. 
 
 
 ---
