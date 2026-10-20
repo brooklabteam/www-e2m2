@@ -61,6 +61,6 @@ Materials from previous years' courses can be accessed at [E<sup>2</sup>M<sup>2<
 ---
 
 
-Misaotra betsaka from the 2026 E<sup>2</sup>M<sup>2</sup> organizing team!
+Misaotra betsaka from the 2027 E<sup>2</sup>M<sup>2</sup> organizing team!
 
-<em>Cara Brook, Hafaliana Christian Ranaivoson, Angelo Andrianiaina, Santino Andry, Gwen Kettenburg, Emily Ruhs, Natalia Cortes Delgado, Sophie Lockwood  </em>
+<em>Cara Brook, Hafaliana Christian Ranaivoson, Angelo Andrianiaina, Santino Andry, Gwen Kettenburg, Ethan Kilroy, Sophie Lockwood, Victor Kowalski, Radha Srinivasan  </em>
