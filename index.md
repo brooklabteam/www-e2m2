@@ -11,7 +11,7 @@ title: "E2M2: Ecological & Epidemiological Modeling in Madagascar"
 -->
 
 <strong> Applications open now for E<sup>2</sup>M<sup>2</sup> 2027! 
-Applications due <a href="https://forms.gle/zXeboeYFAS3q2rYg7">here</a> by midnight November 30th, 2026.
+Applications due <a href="https://airtable.com/app3UDdSfVnsfIXt0/shr4Rf0uOBTfnZiFx">here</a> by midnight November 30th, 2026.
 </strong> 
 
 </div>
@@ -31,7 +31,7 @@ The course will be targeted towards students in their third cycle or higher in b
 
 ---
 
-<a href="https://forms.gle/zXeboeYFAS3q2rYg7">Apply here.</a>
+<a href="https://airtable.com/app3UDdSfVnsfIXt0/shr4Rf0uOBTfnZiFx">Apply here.</a>
 Applications due by midnight November 30th, 2026.
 
 
