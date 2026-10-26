@@ -20,7 +20,7 @@ Applications due <a href="https://airtable.com/app3UDdSfVnsfIXt0/shr4Rf0uOBTfnZi
 
 <img src="/assets/img/E2M2-2025-new.png" alt="E2M2class" style="width: 70%;" />
 
-We are pleased to announce the seventh annual E<sup>2</sup>M<sup>2</sup>:  Ecological and Epidemiological Modeling in Madagascar. The course will consist of a week-long intensive workshop aimed to provide an introduction to the use of dynamical models in understanding ecological and epidemiological data, followed by a final symposium where students will have a chance to present original research.
+We are pleased to announce the seventh annual E<sup>2</sup>M<sup>2</sup>:  Ecological and Epidemiological Modeling in Madagascar which will take place from <strong>May 10-17, 2027</strong>. The course will consist of a week-long intensive workshop aimed to provide an introduction to the use of dynamical models in understanding ecological and epidemiological data, followed by a final symposium where students will have a chance to present original research.
 
 
 
