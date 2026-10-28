@@ -226,7 +226,7 @@ library(raster)
 Next, we will use a google API code (which is also available at: https://developers.google.com/maps/documentation/javascript/)
 ```{r}
 ## Google directions API
-key<-"AIzaSyCuhQ4K6pVY1jl62qXvAmhNTiw3GQDoSKk"
+key <- "YOUR_GOOGLE_MAPS_API_KEY"  # replace with your own key: https://developers.google.com/maps/documentation/directions/get-api-key
 ```
 
 Now, we will calculate the travel distance between the Antananarivo Airport, Antananarivo, Madagascara nd Mahajanga, Madagascar. This example will only include a single origin and destination, but you can easily adapt the code to calculate the distance between multiple pairs of locations (change the origin to a list of elements, similarly change the destination to a list of elements). You can list locations by their name, address, or longitude/latitude. However, if google has a hard time locating the name of a location, then the code will not work. It will be the most reliable to use longitude/latitude values. You may also change the mode of transport see (help(google_distance)). 
