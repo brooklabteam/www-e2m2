@@ -6,3 +6,7 @@
 E2M2.Rproj
 .DS_Store
 IntroPhylo.pptx
+
+# Jekyll build output
+_site/
+.jekyll-cache/

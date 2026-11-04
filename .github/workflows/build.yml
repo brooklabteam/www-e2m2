@@ -1,0 +1,44 @@
+name: Build
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    # Pinned: ubuntu-latest (26.04) has no Ruby 3.3.8 build. Unpin when
+    # .ruby-version moves to the latest 3.3.x (see www-infra TODO).
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+      - name: Install dependencies
+        # .bundle/config skips the development/test groups for Cloudflare;
+        # CI needs html-proofer, so clear that (CI-only; not committed).
+        run: |
+          bundle config set --local without ''
+          bundle install
+      - name: Build site
+        run: bundle exec jekyll build
+      - name: HTMLProofer
+        # Skips archived course materials under assets/<year>/ (rendered R Markdown): generated
+        # files with inline data: URI scripts and images without alt text.
+        env:
+          LANG: C.utf8
+          LC_ALL: C.utf8
+        run: |
+          bundle exec htmlproofer ./_site \
+            --disable-external \
+            --no-enforce-https \
+            --ignore-urls "/^\/pio\//" \
+            --ignore-files "/assets\/20[0-9][0-9]\//"
+      - name: Audit gems for known vulnerabilities
+        run: |
+          gem install bundler-audit
+          bundle-audit check --update
