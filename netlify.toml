@@ -1,0 +1,9 @@
+# Netlify build settings for e2m2.org (these override the Netlify UI).
+#
+# `bundle install` runs every time: Netlify skips its own gem install when
+# Gemfile.lock hasn't changed and trusts its cache, which has failed with
+# Bundler::GemNotFound (www-e2m2#16, 2026-11-05). When the gems are already
+# present this adds only a few seconds.
+[build]
+  command = "bundle install && bundle exec jekyll build"
+  publish = "_site"
