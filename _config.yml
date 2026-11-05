@@ -7,3 +7,5 @@ plugins:
 
 include:
   - _redirects
+exclude:
+  - netlify.toml
